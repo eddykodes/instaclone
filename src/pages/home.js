@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export class home extends Component {
   render() {
     return (
-      <div>
+      <div className='root home'>
         <Container>
-          <h1>Home Page</h1>
+          <Row>
+            <Col xs={12} md={8}>Posts</Col>
+            <Col className='d-none d-lg-block'>Profile</Col>
+          </Row>
         </Container>
       </div>
     )

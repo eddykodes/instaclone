@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 export class profile extends Component {
   render() {
     return (
-      <div>
+      <div className='root profile'>
         <Container>
           <h1>Profile Page</h1>
         </Container>

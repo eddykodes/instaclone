@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 export class messages extends Component {
   render() {
     return (
-      <div>
+      <div className='root messages'>
         <Container>
           <h1>Messages Page</h1>
         </Container>

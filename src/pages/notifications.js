@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 export class notifications extends Component {
   render() {
     return (
-      <div>
+      <div className='root notifications'>
         <Container>
           <h1>Notifications Page</h1>
         </Container>

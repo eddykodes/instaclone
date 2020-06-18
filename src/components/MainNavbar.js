@@ -57,7 +57,7 @@ const CustomMenu = React.forwardRef(
 export class MainNavbar extends Component {
   render() {
     return (
-      <Navbar bg="light" expand="sm">
+      <Navbar expand="sm">
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand href="#home">instaclone</Navbar.Brand>
