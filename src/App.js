@@ -8,6 +8,7 @@ import messages from './pages/messages'
 import profile from './pages/profile'
 import login from './pages/login'
 import signup from './pages/signup'
+import notifications from './pages/notifications'
 
 // Components
 import MainNavbar from './components/MainNavbar'
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/profile' component={profile} />
           <Route exact path='/login' component={login} />
           <Route exact path='/signup' component={signup} />
+          <Route exact path='/notifications' component={notifications} />
         </Switch>
       </div>      
     </Router>
