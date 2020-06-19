@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import logo from '../images/logo.png'
 
 // Bootstrap
 import Navbar from 'react-bootstrap/Navbar'
@@ -60,7 +61,14 @@ export class MainNavbar extends Component {
       <Navbar expand="sm">
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand href="#home">instaclone</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img
+                src={logo}
+                height="25"
+                className="d-inline-block align-top"
+                alt="Instaclone logo"
+              />
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

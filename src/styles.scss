@@ -97,3 +97,36 @@ $border-color: rgba(var(--ce3,239,239,239),1);
     }
   }
 }
+
+.Profile-Details {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 12pt;
+
+  .Profile-Image {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;   
+  }
+  
+
+}
+
+.Profile-Nav {
+  font-size: 12pt;
+  margin-bottom: 15px;
+
+  a {
+    font-size: 11pt;
+    color: inherit;
+
+  }
+
+}
+
+.Profile-Post-Grid {
+  .col-4 {
+    padding: 2px !important;
+  }
+}
