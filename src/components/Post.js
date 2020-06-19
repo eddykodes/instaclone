@@ -8,7 +8,7 @@ import { Heart, Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
 export class Post extends Component {
   render() {
     return (
-      <div className='Post'>
+      <div className='Post borderblock'>
         <div className='Post-Header d-flex align-items-center px-3'>
           <img src={profilePic} alt='profile' className='mr-2'/><span><b>Username</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
         </div>
