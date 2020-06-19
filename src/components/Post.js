@@ -33,7 +33,7 @@ export class Post extends Component {
             <span className='Post-Caption-Date text-grey'>3 days ago</span>
         </div>
         <form className='Post-Comment d-flex justify-content-between p-3'>
-          <input type='text' placeholder='Add a comment' />
+          <input type='text' className='w-100' placeholder='Add a comment' />
           <a href='/comment'><b>Post</b></a>
         </form>
       </div>

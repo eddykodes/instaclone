@@ -21,6 +21,14 @@ a:hover {
   text-decoration: none;
 }
 
+input {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .text-grey {
   color: #888888;
 }
@@ -56,6 +64,18 @@ a:hover {
     margin-right: 10px;       
   }
 }
+
+.ProfileChat {
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;       
+  }
+
+}
+
 
 
 $post-padding: 10px;
@@ -116,24 +136,7 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   .Post-Comment {
     border-top: 1px solid rgba(var(--ce3,239,239,239),1);
 
-    input {
-      -webkit-writing-mode: horizontal-tb !important;
-      text-rendering: auto;
-      color: inherit;
 
-      -webkit-appearance: textfield;
-      background-color: none;
-      -webkit-rtl-ordering: logical;
-      cursor: text;
-      margin: 0em;
-      font: 400 13.3333px Arial;
-      padding: 1px 2px;
-      border: none;
-
-      &:focus {
-        outline: none;
-      }
-    }
   }
 }
 
@@ -168,4 +171,22 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   .col-4 {
     padding: 2px !important;
   }
+}
+
+.messages {
+  min-height: 80vh;
+}
+
+.messages-left {
+  width: 400px !important;
+  border-right: 1px solid $border-color;
+}
+
+.messages-log {
+  overflow-y: scroll;
+  max-height: calc(80vh - 54px);
+}
+
+.messages-message {
+  border-top: 1px solid $border-color;
 }
