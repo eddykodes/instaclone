@@ -10,7 +10,7 @@ export class Post extends Component {
     return (
       <div className='Post borderblock'>
         <div className='Post-Header d-flex align-items-center px-3'>
-          <img src={profilePic} alt='profile' className='mr-2'/><span><b>Username</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
+          <Image src={profilePic} alt='profile' className='mr-2'/><span><b>Username</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
         </div>
         <Image src={profilePic} alt='post' fluid />
         <div className='Post-Options d-flex align-items-center p-3'>
@@ -22,7 +22,7 @@ export class Post extends Component {
         </div>
         <div className='Post-Caption px-3 mb-2'>
             <div className='d-flex align-items-center mt-n1 mb-2'>
-              <img src={profilePic} alt='profile' className='mr-2'/><span>Liked by <b>username</b> and <b>109 others</b></span>
+              <Image src={profilePic} alt='profile' className='mr-2'/><span>Liked by <b>username</b> and <b>109 others</b></span>
             </div>
             <ul class='list-unstyled mb-0'>
               <li><b>username</b> This is a generic caption...</li>
@@ -30,7 +30,7 @@ export class Post extends Component {
               <li><span><b>username</b> This is a generic comment</span><span className='comment-like'><Heart size={13}/></span></li>
               <li><span><b>username</b> This is a generic comment</span><span className='comment-like'><Heart size={13}/></span></li>
             </ul>
-            <span className='Post-Caption-Date'>3 days ago</span>
+            <span className='Post-Caption-Date text-grey'>3 days ago</span>
         </div>
         <form className='Post-Comment d-flex justify-content-between p-3'>
           <input type='text' placeholder='Add a comment' />

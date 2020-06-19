@@ -10,6 +10,22 @@ body{
   font-size: 10pt;
 }
 
+a {
+  color: rgba(var(--d69,0,149,246),1)
+}
+a:hover {
+  text-decoration: none;
+}
+
+.text-grey {
+  color: #888888;
+}
+
+.sub-text {
+  font-size: 9pt;
+  margin-top: -2px;
+}
+
 .navbar {
   background-color: #FFFFFF;
 }
@@ -17,6 +33,26 @@ body{
 .root {
   margin-top: 20px;
 }
+
+.home-profile {
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;       
+  }
+}
+
+.ProfileCard {
+  img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;       
+  }
+}
+
 
 $post-padding: 10px;
 $post-height: 60px;
@@ -70,7 +106,6 @@ $border-color: rgba(var(--ce3,239,239,239),1);
     }
     .Post-Caption-Date {
       font-size: 75%;
-      color: #888888;
       text-transform: uppercase;
     }
   }
