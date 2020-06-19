@@ -19,12 +19,12 @@ export class login extends Component {
       <div className='root login'>
         <Container>
           <Row className='align-items-center justify-content-center'>
-            <Col md={6} lg={5} xl={4} className='d-none d-md-block'>
+            <Col md={5} lg={5} className='d-none d-md-block'>
               <div>
                 <Image fluid src={phoneImage}/>
               </div>
             </Col>
-            <Col xs={12} sm={8} md={6} lg={5} xl={4}>
+            <Col xs={12} sm={8} md={5} lg={5}>
               <div className='LoginForm borderblock text-center'>
 
                 <Image className='LoginForm-Logo' src={logoImage} />

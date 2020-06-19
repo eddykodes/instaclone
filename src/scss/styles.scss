@@ -10,6 +10,10 @@ body{
   font-size: 10pt;
 }
 
+.container {
+  max-width: 1000px;
+}
+
 a {
   color: rgba(var(--d69,0,149,246),1)
 }
