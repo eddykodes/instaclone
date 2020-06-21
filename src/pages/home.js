@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import profilePic from '../images/profile.jpg'
 
 // Bootstrap
@@ -11,15 +12,31 @@ import Image from 'react-bootstrap/Image'
 import Post from '../components/Post'
 import ProfileCard from '../components/ProfileCard'
 
+// Redux
+import { connect } from 'react-redux'
+import { getPosts } from '../redux/actions/dataActions'
+
 export class home extends Component {
+  componentDidMount(){
+    this.props.getPosts()
+  }
   render() {
+    const { posts, loading } = this.props.data
+
     return (
       <div className='root home'>
         <Container>
-          <Row>
+          <Row className='justify-content-center'>
             <Col xs={12} md={8}>
-              <Post />
-              <Post />
+              {
+                !loading
+                ? ( posts.map(post => (
+                  <Post post={post} key={post.postId} />
+                )))
+                : (
+                  <p>Loading...</p>
+                )
+              }
             </Col>
             <Col className='d-none d-lg-block'>
               <div className='home-profile d-flex align-items-center p-3'>
@@ -48,4 +65,13 @@ export class home extends Component {
   }
 }
 
-export default home
+home.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  data: state.data
+})
+
+export default connect(mapStateToProps, { getPosts })(home)
