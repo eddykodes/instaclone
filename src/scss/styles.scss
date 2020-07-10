@@ -191,3 +191,8 @@ $border-color: rgba(var(--ce3,239,239,239),1);
 .messages-message {
   border-top: 1px solid $border-color;
 }
+
+.navbar-profile-image {
+  width: 20px;
+  border-radius: 50%
+}

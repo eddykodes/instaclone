@@ -1,6 +1,10 @@
 import React, { Component, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import logo from '../images/logo.png'
+import PropTypes from 'prop-types'
+
+// Redux
+import { connect } from 'react-redux'
 
 // Bootstrap
 import Navbar from 'react-bootstrap/Navbar'
@@ -84,7 +88,13 @@ export class MainNavbar extends Component {
               </LinkContainer>
               <Dropdown>
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                  <Nav.Link><PersonCircle size={20}/></Nav.Link>
+                  {
+                    this.props.authenticated ? (
+                      <Nav.Link><img class='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user'/></Nav.Link>
+                    ) : (
+                      <Nav.Link><PersonCircle size={20}/></Nav.Link>
+                    )
+                  }
                 </Dropdown.Toggle>
                 <Dropdown.Menu as={CustomMenu}>
                   <LinkContainer to='/login'>
@@ -105,4 +115,14 @@ export class MainNavbar extends Component {
   }
 }
 
-export default MainNavbar
+MainNavbar.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  authenticated: state.user.authenticated,
+  user: state.user
+})
+
+export default connect(mapStateToProps)(MainNavbar)
