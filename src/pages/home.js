@@ -39,14 +39,20 @@ export class home extends Component {
               }
             </Col>
             <Col className='d-none d-lg-block'>
-              <div className='home-profile d-flex align-items-center p-3'>
-                <Image src={profilePic} alt='profile' className='mr-3'/>
-                <ul className='list-unstyled m-0'>
-                  <li><b>Username</b></li>
-                  <li className='text-grey'>Name</li>
-                </ul>
-              </div>
-              <div className='home-suggestions py-3'>
+              {
+                this.props.user.authenticated ? (
+                  <div className='home-profile d-flex align-items-center p-3 mb-3'>
+                    <Image src={profilePic} alt='profile' className='mr-3'/>
+                    <ul className='list-unstyled m-0'>
+                      <li><b>{this.props.user.credentials.userName}</b></li>
+                      <li className='text-grey'>{this.props.user.credentials.name}</li>
+                    </ul>
+                  </div>
+                ) : (
+                  null
+                )
+              }
+              <div className='home-suggestions'>
                 <div className='px-3 d-flex justify-content-between'>
                   <b className='text-grey'>Suggestions For You</b>
                   <span className='ml-auto'>See All</span>
@@ -71,7 +77,12 @@ home.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  data: state.data
+  data: state.data,
+  user: state.user
 })
 
-export default connect(mapStateToProps, { getPosts })(home)
+const mapActionsToProps = {
+  getPosts
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(home)
