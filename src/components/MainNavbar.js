@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 // Redux
 import { connect } from 'react-redux'
+import { logoutUser } from '../redux/actions/userActions'
 
 // Bootstrap
 import Navbar from 'react-bootstrap/Navbar'
@@ -14,7 +15,6 @@ import Container from 'react-bootstrap/Container'
 
 // Icons
 import { 
-  PersonCircle, 
   ChatSquare, 
   Heart,
   House,
@@ -60,9 +60,12 @@ const CustomMenu = React.forwardRef(
 
 
 export class MainNavbar extends Component {
+  handleLogout = () => {
+    this.props.logoutUser()
+  }
   render() {
     return (
-      <Navbar expand="sm">
+      <Navbar className='navbar' expand="sm">
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand href="#home">
@@ -76,37 +79,42 @@ export class MainNavbar extends Component {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <LinkContainer to='/'>
-                <Nav.Link><House size={20}/></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to='/notifications'>
-                <Nav.Link><Heart size={20}/></Nav.Link>
-              </LinkContainer>
-              <LinkContainer to='/messages'>
-                <Nav.Link><ChatSquare size={20}/></Nav.Link>
-              </LinkContainer>
-              <Dropdown>
-                <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                  {
-                    this.props.authenticated ? (
+            {
+              this.props.user.authenticated 
+              ? (
+                <Nav className="ml-auto">
+                  <LinkContainer to='/'>
+                    <Nav.Link><House size={20}/></Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/notifications'>
+                    <Nav.Link><Heart size={20}/></Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/messages'>
+                    <Nav.Link><ChatSquare size={20}/></Nav.Link>
+                  </LinkContainer>
+                  <Dropdown>
+                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
                       <Nav.Link><img class='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user'/></Nav.Link>
-                    ) : (
-                      <Nav.Link><PersonCircle size={20}/></Nav.Link>
-                    )
-                  }
-                </Dropdown.Toggle>
-                <Dropdown.Menu as={CustomMenu}>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu as={CustomMenu}>
+                      <LinkContainer to='/profile'>
+                        <Dropdown.Item>Profile</Dropdown.Item>
+                      </LinkContainer>
+                      <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Nav> 
+              ) : (
+                <Nav className="ml-auto">
                   <LinkContainer to='/login'>
-                    <Dropdown.Item>Login</Dropdown.Item>
+                    <Nav.Link>Login</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to='/profile'>
-                    <Dropdown.Item>Profile</Dropdown.Item>
+                  <LinkContainer to='/signup'>
+                    <Nav.Link>Signup</Nav.Link>
                   </LinkContainer>
-                  <Dropdown.Item>Logout</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Nav>
+                </Nav>
+              )              
+            }
           </Navbar.Collapse>
         </Container>
 
@@ -116,13 +124,17 @@ export class MainNavbar extends Component {
 }
 
 MainNavbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.user.authenticated,
   user: state.user
 })
 
-export default connect(mapStateToProps)(MainNavbar)
+const mapActionsToProps = {
+  logoutUser
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(MainNavbar)
