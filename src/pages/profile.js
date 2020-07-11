@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import profilePic from '../images/profile.jpg'
+
+// Redux
+import { connect } from 'react-redux'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -11,22 +15,23 @@ import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
   render() {
+    const {userName, userImage, name, followerCount, followingCount} = this.props.user.credentials
     return (
       <div className='root profile'>
         <Container>
           <Row className='Profile-Details'>
             <Col className='text-center' xs={12} sm={6} md={4}>
-              <Image className='Profile-Image' src={profilePic}/>
+              <Image className='Profile-Image' src={userImage}/>
             </Col>
             <Col>
-              <h4>username</h4>
+              <h4>{userName}</h4>
               <ul class="list-inline my-3">
                 <li class="list-inline-item"><b>123</b> posts</li>
-                <li class="list-inline-item"><b>321</b> followers</li>
-                <li class="list-inline-item"><b>213</b> following</li>
+                <li class="list-inline-item"><b>{followerCount}</b> followers</li>
+                <li class="list-inline-item"><b>{followingCount}</b> following</li>
               </ul>
               <div>
-                <p>User bio</p>
+                <b>{name}</b>
               </div>
               
             </Col>
@@ -81,4 +86,15 @@ export class profile extends Component {
   }
 }
 
-export default profile
+profile.propTypes = {
+  user: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+const mapActionsToProps = {
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(profile)
