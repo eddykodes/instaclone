@@ -50,7 +50,7 @@ export class NewPost extends Component {
     const { userName, userImage } = this.props.user.credentials
     return (
       <Fragment>
-        <div className='home-options borderblock d-flex justify-content-center p-3 mb-3'>
+        <div className='NewPost borderblock d-flex justify-content-center p-3 mb-3'>
           <Link onClick={this.handleShow} className='text-center'>
             <PlusCircle size={20}/>
             <span className='d-block mt-1'>New Post</span>
@@ -63,16 +63,16 @@ export class NewPost extends Component {
             <Image src={userImage} alt='profile' className='mr-2'/><span><b>{userName}</b></span><span className='ml-auto'></span>
           </div>
           <Form className='' onSubmit={this.handleSubmit}>
-            <div className='CreatePost-Image-Container'>
-              <div className='CreatePost-Image d-flex justify-content-center align-items-center'>
+            <div className='NewPost-Image-Container'>
+              <div className='NewPost-Image d-flex justify-content-center align-items-center'>
                 <Form.Group className='Create-Post-Image'>
                   <Form.File id="exampleFormControlFile1"/>
                 </Form.Group>
               </div>
 
             </div>
-            <Form.Group controlId="formTextArea" className='p-3'>
-              <Form.Control as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
+            <Form.Group controlId="formTextArea" className='NewPost-Body p-3'>
+              <Form.Control className='NewPost-Body' as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
               <Form.Control.Feedback type={this.state.errors.body ? true : false }>{this.state.errors.body}</Form.Control.Feedback> 
             </Form.Group>
             <div className='Post-Submit d-flex justify-content-around mt-3'>

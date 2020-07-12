@@ -29,7 +29,13 @@ export class home extends Component {
         <Container>
           <Row className='justify-content-center'>
             <Col xs={12} md={8}>
-              <NewPost />
+              {
+                this.props.user.authenticated ? (
+                  <NewPost />
+                ) : (
+                  null
+                )
+              }
               {
                 !loading
                 ? ( 
