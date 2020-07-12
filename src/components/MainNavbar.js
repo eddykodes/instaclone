@@ -94,7 +94,7 @@ export class MainNavbar extends Component {
                   </LinkContainer>
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                      <Nav.Link><img class='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user'/></Nav.Link>
+                      <Nav.Link><img className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user'/></Nav.Link>
                     </Dropdown.Toggle>
                     <Dropdown.Menu as={CustomMenu}>
                       <LinkContainer to='/profile'>

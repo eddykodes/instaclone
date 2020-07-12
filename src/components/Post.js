@@ -31,7 +31,7 @@ export class Post extends Component {
             <div className='d-flex align-items-center mt-n1 mb-2'>
               <Image src={profilePic} alt='profile' className='mr-2'/><span>Liked by <b>username</b> and <b>{post.likeCount} others</b></span>
             </div>
-            <ul class='list-unstyled mb-0'>
+            <ul className='list-unstyled mb-0'>
               <li><b>username</b> {post.body}</li>
               <li><a href='/comments'>View all 42 comments</a></li>
               <li><span><b>username</b> This is a generic comment</span><span className='comment-like'><Heart size={13}/></span></li>

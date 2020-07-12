@@ -67,10 +67,10 @@ export class NewPost extends Component {
     return (
       <Fragment>
         <div className='NewPost borderblock d-flex justify-content-center p-3 mb-3'>
-          <Link onClick={this.handleShow} className='text-center'>
+          <div onClick={this.handleShow} className='text-center btn-link link-unstyled'>
             <PlusCircle size={20}/>
             <span className='d-block mt-1'>New Post</span>
-          </Link>
+          </div>
         </div>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -83,7 +83,7 @@ export class NewPost extends Component {
               <div className='NewPost-Image d-flex justify-content-center align-items-center'>
                 <Form.Group controlId="formBasicTest">
                   <Form.Control size='sm' name='image' value={this.state.image} onChange={this.handleChange} type="text" placeholder="Enter image" />
-                  <Form.Control.Feedback type={this.state.errors.image ? true : false }>{this.state.errors.image}</Form.Control.Feedback> 
+                  <Form.Control.Feedback type={this.state.errors.image ? 'valid' : 'invalid' }>{this.state.errors.image}</Form.Control.Feedback> 
                 </Form.Group>
                 {/* <Form.Group className='Create-Post-Image'>
                   <Form.File id="exampleFormControlFile1"/>
@@ -92,7 +92,7 @@ export class NewPost extends Component {
             </div>
             <Form.Group controlId="formTextArea" className='NewPost-Body p-3'>
               <Form.Control as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
-              <Form.Control.Feedback type={this.state.errors.body ? true : false }>{this.state.errors.body}</Form.Control.Feedback> 
+              <Form.Control.Feedback type={this.state.errors.body ? 'valid' : 'invalid' }>{this.state.errors.body}</Form.Control.Feedback> 
             </Form.Group>
             <div className='Post-Submit d-flex justify-content-around mt-3'>
               <span className='link-unstyled' onClick={this.handleClose}><b>Cancel</b></span>
