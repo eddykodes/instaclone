@@ -15,17 +15,23 @@ body{
 }
 
 a {
-  color: rgba(var(--d69,0,149,246),1)
-}
-a:hover {
-  text-decoration: none;
+  color: rgba(var(--d69,0,149,246),1);
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
-input {
-  border: none;
+.link-unstyled:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input, textarea {
+  border: none !important;
 
   &:focus {
-    outline: none;
+    outline: none !important;
   }
 }
 
@@ -136,8 +142,6 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   }
   .Post-Comment {
     border-top: 1px solid rgba(var(--ce3,239,239,239),1);
-
-
   }
 }
 
@@ -198,5 +202,32 @@ $border-color: rgba(var(--ce3,239,239,239),1);
 
 .navbar-profile-image {
   width: 20px;
-  border-radius: 50%
+  border-radius: 50%;
+}
+
+textarea {
+
+    font-size: inherit !important;
+    border-radius: none !important;
+  
+    &:focus{
+      outline: none !important;
+    }
+
+
+}
+
+.CreatePost-Image-Container {
+  padding-top: 100%;
+  width: 100%;
+  position: relative;
+
+  .CreatePost-Image {
+    background-color: rgba(var(--ce3,239,239,239),1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

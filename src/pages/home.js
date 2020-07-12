@@ -10,6 +10,7 @@ import Image from 'react-bootstrap/Image'
 
 // Components
 import Post from '../components/Post'
+import NewPost from '../components/NewPost'
 import ProfileCard from '../components/ProfileCard'
 
 // Redux
@@ -28,12 +29,14 @@ export class home extends Component {
         <Container>
           <Row className='justify-content-center'>
             <Col xs={12} md={8}>
+              <NewPost />
               {
                 !loading
-                ? ( posts.map(post => (
-                  <Post post={post} key={post.postId} />
-                )))
-                : (
+                ? ( 
+                  posts.map(post => (
+                    <Post post={post} key={post.postId} />
+                  ))
+                ) : (
                   <p>Loading...</p>
                 )
               }
