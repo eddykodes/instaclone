@@ -64,12 +64,12 @@ export class login extends Component {
                 
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formBasicEmail">
-                    <Form.Control size='sm' name='email' value={this.state.email} onChange={this.handleChange} type="email" placeholder="Enter email" />
-                    <Form.Control.Feedback type={this.state.errors.email ? true : false }>{this.state.errors.email}</Form.Control.Feedback> 
+                    <Form.Control size='sm' name='email' value={this.state.email} onChange={this.handleChange} type="email" placeholder="Enter email" isInvalid={this.state.errors.email ? (true):(false)} />
+                    <Form.Control.Feedback type='invalid'>{this.state.errors.email}</Form.Control.Feedback> 
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Control size='sm' name='password' value={this.state.password} onChange={this.handleChange} type="password" placeholder="Password" />
-                    <Form.Control.Feedback type={this.state.errors.password ? true : false }>{this.state.errors.password}</Form.Control.Feedback>
+                    <Form.Control size='sm' name='password' value={this.state.password} onChange={this.handleChange} type="password" placeholder="Password" isInvalid={this.state.errors.password ? (true):(false)} />
+                    <Form.Control.Feedback type='invalid'>{this.state.errors.password}</Form.Control.Feedback>
                   </Form.Group>
                   <Button variant="primary" type="submit" size='sm' disabled={this.props.UI.loading} block>
                     Submit

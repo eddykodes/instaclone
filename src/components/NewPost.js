@@ -82,8 +82,8 @@ export class NewPost extends Component {
             <div className='NewPost-Image-Container'>
               <div className='NewPost-Image d-flex justify-content-center align-items-center'>
                 <Form.Group controlId="formBasicTest">
-                  <Form.Control size='sm' name='image' value={this.state.image} onChange={this.handleChange} type="text" placeholder="Enter image" />
-                  <Form.Control.Feedback type={this.state.errors.image ? 'valid' : 'invalid' }>{this.state.errors.image}</Form.Control.Feedback> 
+                  <Form.Control size='sm' name='image' value={this.state.image} onChange={this.handleChange} type="text" placeholder="Enter image" isInvalid={this.state.errors.image ? (true):(false)} />
+                  <Form.Control.Feedback type='invalid'>{this.state.errors.image}</Form.Control.Feedback> 
                 </Form.Group>
                 {/* <Form.Group className='Create-Post-Image'>
                   <Form.File id="exampleFormControlFile1"/>
@@ -91,8 +91,8 @@ export class NewPost extends Component {
               </div>
             </div>
             <Form.Group controlId="formTextArea" className='NewPost-Body p-3'>
-              <Form.Control as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
-              <Form.Control.Feedback type={this.state.errors.body ? 'valid' : 'invalid' }>{this.state.errors.body}</Form.Control.Feedback> 
+              <Form.Control as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." isInvalid={this.state.errors.body ? (true):(false)} />
+              <Form.Control.Feedback type='invalid'>{this.state.errors.body}</Form.Control.Feedback> 
             </Form.Group>
             <div className='Post-Submit d-flex justify-content-around mt-3'>
               <span className='link-unstyled' onClick={this.handleClose}><b>Cancel</b></span>

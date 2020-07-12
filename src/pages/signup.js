@@ -65,25 +65,25 @@ export class signup extends Component {
                 <Image className='LoginForm-Logo' src={logoImage} />
 
                 
-                <Form onSubmit={this.handleSubmit}>
+                <Form noValidate onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formEmail">
-                    <Form.Control size='sm' name='email' value={this.state.email} onChange={this.handleChange} type="email" placeholder="Enter email" />
-                    <Form.Control.Feedback type={this.state.errors.email ? true : false }>{this.state.errors.email}</Form.Control.Feedback> 
+                    <Form.Control size='sm' name='email' value={this.state.email} onChange={this.handleChange} type="email" placeholder="Enter email" isInvalid={this.state.errors.email ? (true):(false)} />
+                      <Form.Control.Feedback type='invalid'>{this.state.errors.email}</Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group controlId="formUsername">
-                    <Form.Control size='sm' name='userName' value={this.state.userName} onChange={this.handleChange} type="text" placeholder="Username" />
-                    <Form.Control.Feedback type={this.state.errors.userName ? true : false }>{this.state.errors.userName}</Form.Control.Feedback> 
+                    <Form.Control size='sm' name='userName' value={this.state.userName} onChange={this.handleChange} type="text" placeholder="Username" isInvalid={this.state.errors.userName ? (true):(false)} />
+                    <Form.Control.Feedback type='invalid'>{this.state.errors.userName}</Form.Control.Feedback> 
                   </Form.Group>
                   <Form.Group controlId="formName">
                     <Form.Control size='sm' name='name' value={this.state.name} onChange={this.handleChange} type="text" placeholder="Full Name" />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
-                    <Form.Control size='sm' name='password' value={this.state.password} onChange={this.handleChange} type="password" placeholder="Password" />
-                    <Form.Control.Feedback type={this.state.errors.password ? true : false }>{this.state.errors.password}</Form.Control.Feedback> 
+                    <Form.Control size='sm' name='password' value={this.state.password} onChange={this.handleChange} type="password" placeholder="Password" isInvalid={this.state.errors.password ? (true):(false)} />
+                    <Form.Control.Feedback type='invalid'>{this.state.errors.password}</Form.Control.Feedback> 
                   </Form.Group>
                   <Form.Group controlId="formConfirmPassword">
-                    <Form.Control size='sm' name='confirmPassword' value={this.state.confirmPassword} onChange={this.handleChange} type="password" placeholder="Confirm Password" />
-                    <Form.Control.Feedback type={this.state.errors.confirmPassword ? true : false }>{this.state.errors.confirmPassword}</Form.Control.Feedback> 
+                    <Form.Control size='sm' name='confirmPassword' value={this.state.confirmPassword} onChange={this.handleChange} type="password" placeholder="Confirm Password" isInvalid={this.state.errors.confirmPassword ? (true):(false)} />
+                    <Form.Control.Feedback type='invalid'>{this.state.errors.confirmPassword}</Form.Control.Feedback> 
                   </Form.Group>
                   <Button variant="primary" type="submit" size='sm' disabled={this.props.UI.loading} block>
                     Submit
