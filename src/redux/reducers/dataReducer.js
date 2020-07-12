@@ -1,4 +1,4 @@
-import { SET_POSTS, LOADING_DATA } from '../types'
+import { SET_POSTS, LOADING_DATA, CREATE_POST } from '../types'
 
 const initialState = {
   posts: [],
@@ -19,6 +19,14 @@ export default function(state = initialState, action){
         ...state,
         posts: action.payload,
         loading: false
+      }
+    case CREATE_POST:
+      return {
+        ...state,
+        posts: [
+          action.payload,
+          ...state.posts
+        ]
       }
     default:
       return state

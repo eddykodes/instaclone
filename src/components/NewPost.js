@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 // Redux
 import { connect } from 'react-redux'
+import { createPost, clearErrors } from '../redux/actions/dataActions'
 
 // Bootstrap
 import Modal from 'react-bootstrap/Modal'
@@ -20,7 +21,18 @@ export class NewPost extends Component {
     this.state = {
       show: false,
       body: '',
+      image: '',
       errors: {}
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.UI.errors){
+      this.setState({
+        errors: nextProps.UI.errors
+      })
+    }
+    if(!nextProps.UI.errors && !nextProps.UI.loading){
+      this.setState({ body: '', open: false, errors: {}})
     }
   }
   handleShow = () => {
@@ -29,6 +41,7 @@ export class NewPost extends Component {
     })
   }
   handleClose = () => {
+    this.props.clearErrors()
     this.setState({
       show: false,
       body: '',
@@ -42,8 +55,11 @@ export class NewPost extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.setState({
-      show: false
+    this.props.createPost({ 
+      body: this.state.body,
+      image: this.state.image,
+      userName: this.props.user.credentials.userName,
+      userImage: this.props.user.credentials.userImage
     })
   }
   render() {
@@ -65,14 +81,17 @@ export class NewPost extends Component {
           <Form className='' onSubmit={this.handleSubmit}>
             <div className='NewPost-Image-Container'>
               <div className='NewPost-Image d-flex justify-content-center align-items-center'>
-                <Form.Group className='Create-Post-Image'>
-                  <Form.File id="exampleFormControlFile1"/>
+                <Form.Group controlId="formBasicTest">
+                  <Form.Control size='sm' name='image' value={this.state.image} onChange={this.handleChange} type="text" placeholder="Enter image" />
+                  <Form.Control.Feedback type={this.state.errors.image ? true : false }>{this.state.errors.image}</Form.Control.Feedback> 
                 </Form.Group>
+                {/* <Form.Group className='Create-Post-Image'>
+                  <Form.File id="exampleFormControlFile1"/>
+                </Form.Group> */}
               </div>
-
             </div>
             <Form.Group controlId="formTextArea" className='NewPost-Body p-3'>
-              <Form.Control className='NewPost-Body' as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
+              <Form.Control as='textarea' rows={3} name='body' value={this.state.body} onChange={this.handleChange} placeholder="Add a caption..." />
               <Form.Control.Feedback type={this.state.errors.body ? true : false }>{this.state.errors.body}</Form.Control.Feedback> 
             </Form.Group>
             <div className='Post-Submit d-flex justify-content-around mt-3'>
@@ -89,15 +108,20 @@ export class NewPost extends Component {
 }
 
 NewPost.propTypes = {
-  user: PropTypes.func.isRequired
+  user: PropTypes.object.isRequired,
+  createPost: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  UI: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  UI: state.UI
 })
 
 const mapActionsToProps = {
-  
+  createPost,
+  clearErrors
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(NewPost)
