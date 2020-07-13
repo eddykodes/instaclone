@@ -3,6 +3,9 @@ import profilePic from '../images/profile.jpg'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
+// Components
+import CommentForm from './CommentForm'
+
 // Bootstrap
 import Image from 'react-bootstrap/Image'
 import { Heart, Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
@@ -39,10 +42,7 @@ export class Post extends Component {
             </ul>
             <span className='Post-Caption-Date text-grey'>{dayjs(post.createdAt).fromNow()}</span>
         </div>
-        <form className='Post-Comment d-flex justify-content-between p-3'>
-          <input type='text' className='w-100' placeholder='Add a comment' />
-          <a href='/comment'><b>Post</b></a>
-        </form>
+        <CommentForm />
       </div>
     )
   }
