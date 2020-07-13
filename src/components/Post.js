@@ -42,7 +42,7 @@ export class Post extends Component {
             </ul>
             <span className='Post-Caption-Date text-grey'>{dayjs(post.createdAt).fromNow()}</span>
         </div>
-        <CommentForm />
+        <CommentForm postId={post.postId}/>
       </div>
     )
   }
