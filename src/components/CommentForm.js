@@ -5,6 +5,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { submitComment } from '../redux/actions/dataActions'
 
+// Bootstrap
+import Form from 'react-bootstrap/Form'
+
 export class CommentForm extends Component {
   constructor(props){
     super(props)
@@ -32,10 +35,10 @@ export class CommentForm extends Component {
   }
   render() {
     return (
-      <form className='Post-Comment d-flex justify-content-between p-3'>
+      <Form className='Post-Comment d-flex justify-content-between p-3' onSubmit={this.handleSubmit}>
         <input type='text' className='w-100' name='body' value={this.state.body} onChange={this.handleChange} placeholder='Add a comment' />
         <span className='btn-link link-unstyled' onClick={this.handleSubmit}><b>Post</b></span>
-      </form>
+      </Form>
     )
   }
 }
