@@ -1,4 +1,4 @@
-import { SET_POSTS, LOADING_DATA, CREATE_POST, LIKE_POST } from '../types'
+import { SET_POSTS, LOADING_DATA, CREATE_POST, LIKE_POST, UNLIKE_POST } from '../types'
 
 const initialState = {
   posts: [],
@@ -29,6 +29,7 @@ export default function(state = initialState, action){
         ]
       }
     case LIKE_POST:
+    case UNLIKE_POST:
       let index = state.posts.findIndex((post) => post.postId === action.payload.postId)
       state.posts[index] = action.payload
       if(state.post.postId === action.payload.postId){

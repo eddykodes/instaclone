@@ -1,4 +1,4 @@
-import { SET_POSTS, LOADING_DATA, CREATE_POST, SET_ERRORS, LOADING_UI, CLEAR_ERRORS, SUBMIT_COMMENT, LIKE_POST } from '../types'
+import { SET_POSTS, LOADING_DATA, CREATE_POST, SET_ERRORS, LOADING_UI, CLEAR_ERRORS, SUBMIT_COMMENT, LIKE_POST, UNLIKE_POST } from '../types'
 import axios from 'axios'
 
 // Clear errors
@@ -67,6 +67,18 @@ export const likePost = (postId) => (dispatch) => {
     .then(res => {
       dispatch({
         type: LIKE_POST,
+        payload: res.data
+      })
+    })
+    .catch(err => console.log(err))
+}
+
+// Unlike a Post
+export const unlikePost = (postId) => (dispatch) => {
+  axios.post(`/posts/${postId}/unlike`)
+    .then(res => {
+      dispatch({
+        type: UNLIKE_POST,
         payload: res.data
       })
     })
