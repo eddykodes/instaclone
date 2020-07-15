@@ -5,10 +5,11 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 // Components
 import CommentForm from './CommentForm'
+import LikeButton from './LikeButton'
 
 // Bootstrap
 import Image from 'react-bootstrap/Image'
-import { Heart, Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
+import { Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
 
 export class Post extends Component {
   render() {
@@ -25,7 +26,7 @@ export class Post extends Component {
         <Image src={profilePic} alt='post' fluid />
         <div className='Post-Options d-flex align-items-center p-3'>
           <div className='mr-auto'>
-            <Heart className='mr-3'size={25}/>
+            <LikeButton />
             <Chat className='mb-1' size={25}/>
           </div>
           <div><Bookmark size={25}/></div>        
