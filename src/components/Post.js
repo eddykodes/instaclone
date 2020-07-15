@@ -21,12 +21,12 @@ export class Post extends Component {
     return (
       <div className='Post borderblock'>
         <div className='Post-Header d-flex align-items-center px-3'>
-          <Image src={profilePic} alt='profile' className='mr-2'/><span><b>{post.userName}</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
+          <Image src={post.userImage} alt='profile' className='mr-2'/><span><b>{post.userName}</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
         </div>
-        <Image src={profilePic} alt='post' fluid />
+        <Image src={post.userImage} alt='post' fluid />
         <div className='Post-Options d-flex align-items-center p-3'>
           <div className='mr-auto'>
-            <LikeButton />
+            <LikeButton postId={post.postId}/>
             <Chat className='mb-1' size={25}/>
           </div>
           <div><Bookmark size={25}/></div>        

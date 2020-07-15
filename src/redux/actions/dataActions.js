@@ -1,5 +1,10 @@
-import { SET_POSTS, LOADING_DATA, CREATE_POST, SET_ERRORS, LOADING_UI, CLEAR_ERRORS, SUBMIT_COMMENT } from '../types'
+import { SET_POSTS, LOADING_DATA, CREATE_POST, SET_ERRORS, LOADING_UI, CLEAR_ERRORS, SUBMIT_COMMENT, LIKE_POST } from '../types'
 import axios from 'axios'
+
+// Clear errors
+export const clearErrors = () => (dispatch) => {
+  dispatch({ type: CLEAR_ERRORS })
+}
 
 // Get all posts
 export const getPosts = () => (dispatch) => {
@@ -56,7 +61,14 @@ export const submitComment = (postId, commentData) => (dispatch) => {
     })
 }
 
-// Clear errors
-export const clearErrors = () => (dispatch) => {
-  dispatch({ type: CLEAR_ERRORS })
+// Like a Post
+export const likePost = (postId) => (dispatch) => {
+  axios.post(`/posts/${postId}/like`)
+    .then(res => {
+      dispatch({
+        type: LIKE_POST,
+        payload: res.data
+      })
+    })
+    .catch(err => console.log(err))
 }

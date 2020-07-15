@@ -1,4 +1,4 @@
-import { SET_POSTS, LOADING_DATA, CREATE_POST } from '../types'
+import { SET_POSTS, LOADING_DATA, CREATE_POST, LIKE_POST } from '../types'
 
 const initialState = {
   posts: [],
@@ -27,6 +27,15 @@ export default function(state = initialState, action){
           action.payload,
           ...state.posts
         ]
+      }
+    case LIKE_POST:
+      let index = state.posts.findIndex((post) => post.postId === action.payload.postId)
+      state.posts[index] = action.payload
+      if(state.post.postId === action.payload.postId){
+        state.post = action.payload
+      }
+      return {
+        ...state
       }
     default:
       return state
