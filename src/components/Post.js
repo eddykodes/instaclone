@@ -35,10 +35,13 @@ export class Post extends Component {
               <Image src={profilePic} alt='profile' className='mr-2'/><span>Liked by <b>username</b> and <b>{post.likeCount} others</b></span>
             </div>
             <ul className='list-unstyled mb-0'>
-              <li><b>username</b> {post.body}</li>
-              <li><a href='/comments'>View all 42 comments</a></li>
-              <li><span><b>username</b> This is a generic comment</span><span className='comment-like'><Heart size={13}/></span></li>
-              <li><span><b>username</b> This is a generic comment</span><span className='comment-like'><Heart size={13}/></span></li>
+              <li><b>{post.userName}</b> {post.body}</li>
+              <li><a href='/comments'>View all {post.commentCount} comments</a></li>
+              {
+                post.comments.map(comment => (
+                  <li><span><b>{comment.userName}</b> {comment.body}</span></li>
+                ))
+              }
             </ul>
             <span className='Post-Caption-Date text-grey'>{dayjs(post.createdAt).fromNow()}</span>
         </div>
