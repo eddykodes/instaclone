@@ -18,10 +18,10 @@ export class CommentForm extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors });
+      this.setState({ errors: nextProps.UI.errors })
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: '' });
+      this.setState({ body: '' })
     }
   }
   handleChange = (event) => {

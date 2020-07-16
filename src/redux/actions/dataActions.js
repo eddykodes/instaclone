@@ -69,6 +69,7 @@ export const likePost = (postId) => (dispatch) => {
         type: LIKE_POST,
         payload: res.data
       })
+      dispatch(clearErrors())
     })
     .catch(err => console.log(err))
 }
@@ -81,6 +82,7 @@ export const unlikePost = (postId) => (dispatch) => {
         type: UNLIKE_POST,
         payload: res.data
       })
+      dispatch(clearErrors())
     })
     .catch(err => console.log(err))
 }

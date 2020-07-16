@@ -9,11 +9,29 @@ import { likePost, unlikePost } from '../redux/actions/dataActions'
 import { Heart, HeartFill } from 'react-bootstrap-icons'
 
 export class LikeButton extends Component {
-  likedPost = () => {
+  constructor(){
+    super()
+    this.state = {
+      likeStatus: null,
+      errors: {}
+    }
+  }
+  componentDidMount(){
+    this.checkStatus()
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors })
+    }
+    if (!nextProps.UI.errors && !nextProps.UI.loading) {
+      this.setState({ likeStatus: !this.state.likeStatus })
+    }
+  }
+  checkStatus = () => {
     if(this.props.user.likes && this.props.user.likes.find((like) => like.postId === this.props.postId)){
-      return true 
+      this.setState({ likeStatus: true })
     } else {
-      return false
+      this.setState({ likeStatus: false })
     }
   }
   likePost = () => {
@@ -26,7 +44,7 @@ export class LikeButton extends Component {
     return (
       <Fragment>
         {
-          this.likedPost() ? (
+          this.state.likeStatus ? (
             <HeartFill className='mr-3' size={25} onClick={this.unlikePost} />
           ) : (
             <Heart className='mr-3' size={25} onClick={this.likePost} />
@@ -46,7 +64,8 @@ LikeButton.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  UI: state.UI
 })
 
 const mapActionsToProps = {
