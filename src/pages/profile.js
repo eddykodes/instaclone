@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import profilePic from '../images/profile.jpg'
 
+// Components
+import EditProfile from '../components/EditProfile'
+
 // Redux
 import { connect } from 'react-redux'
 
@@ -24,16 +27,21 @@ export class profile extends Component {
               <Image className='Profile-Image' src={userImage}/>
             </Col>
             <Col>
-              <h4>{userName}</h4>
-              <ul class="list-inline my-3">
-                <li class="list-inline-item"><b>123</b> posts</li>
-                <li class="list-inline-item"><b>{followerCount}</b> followers</li>
-                <li class="list-inline-item"><b>{followingCount}</b> following</li>
-              </ul>
               <div>
+                <h4>{userName}</h4>
+                
+                <ul class="list-inline">
+                  <li class="list-inline-item"><b>123</b> posts</li>
+                  <li class="list-inline-item"><b>{followerCount}</b> followers</li>
+                  <li class="list-inline-item"><b>{followingCount}</b> following</li>
+                </ul>
+              </div>
+              <div className='my-3'>
                 <b>{name}</b>
               </div>
-              
+              <div>
+                <EditProfile />
+              </div>
             </Col>
           </Row>
           <hr />
