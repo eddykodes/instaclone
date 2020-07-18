@@ -57,3 +57,12 @@ export const logoutUser = () => (dispatch) => {
   delete axios.defaults.headers.common['Authorization']
   dispatch({ type: SET_UNAUTHENTICATED })
 }
+
+export const editUserDetails = (currentUserName, userDetails) => (dispatch) => {
+  dispatch({ type: LOADING_USER })
+  axios.post(`/users/${currentUserName}`, userDetails)
+    .then(() => {
+      dispatch(getUserData())
+    })
+    .catch(err => console.log(err))
+}

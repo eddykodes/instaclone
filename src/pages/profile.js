@@ -18,7 +18,7 @@ import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
   render() {
-    const {userName, userImage, name, followerCount, followingCount} = this.props.user.credentials
+    const {userName, userImage, name, bio, followerCount, followingCount} = this.props.user.credentials
     return (
       <div className='root profile'>
         <Container>
@@ -38,6 +38,7 @@ export class profile extends Component {
               </div>
               <div className='my-3'>
                 <b>{name}</b>
+                <p>{bio}</p>
               </div>
               <div>
                 <EditProfile />
