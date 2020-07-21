@@ -56,7 +56,7 @@ export class EditProfile extends Component {
   render() {
     return (
       <Fragment>
-        <Button size='sm' variant='outline-dark' onClick={this.handleShow}>Edit Profile</Button>
+        <Button size='sm' variant='outline-dark' onClick={this.handleShow} className='mr-1'>Edit Profile</Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <div className='p-3'>

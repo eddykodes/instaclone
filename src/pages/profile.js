@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
+import Button from 'react-bootstrap/Button'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
@@ -42,6 +43,7 @@ export class profile extends Component {
               </div>
               <div>
                 <EditProfile />
+                <Button size='sm' variant='outline-dark'>Change Picture</Button>
               </div>
             </Col>
           </Row>
