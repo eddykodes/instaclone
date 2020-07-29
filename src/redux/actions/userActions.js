@@ -66,3 +66,12 @@ export const editUserDetails = (currentUserName, userDetails) => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+export const uploadImage = (formData) => (dispatch) => {
+  dispatch({ type: LOADING_USER })
+  axios.post('/user/image', formData)
+    .then(res => {
+      dispatch(getUserData())
+    })
+    .catch(err => console.log(err))
+}

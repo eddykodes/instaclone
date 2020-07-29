@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import profilePic from '../images/profile.jpg'
 
@@ -7,6 +7,7 @@ import EditProfile from '../components/EditProfile'
 
 // Redux
 import { connect } from 'react-redux'
+import { uploadImage } from '../redux/actions/userActions'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -18,6 +19,16 @@ import Button from 'react-bootstrap/Button'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
+  handleImageChange = (event) => {
+    const image = event.target.files[0]
+    const formData = new FormData()
+    formData.append('image', image, image.name)
+    this.props.uploadImage(formData)
+  }
+  handleEditPicture = () => {
+    const fileInput = document.getElementById('profileImageInput')
+    fileInput.click()
+  }
   render() {
     const {userName, userImage, name, bio, followerCount, followingCount} = this.props.user.credentials
     return (
@@ -26,6 +37,9 @@ export class profile extends Component {
           <Row className='Profile-Details'>
             <Col className='text-center' xs={12} sm={6} md={4}>
               <Image className='Profile-Image' src={userImage}/>
+              <input type='file' id='profileImageInput' hidden='hidden' onChange={this.handleImageChange} />
+
+              
             </Col>
             <Col>
               <div>
@@ -42,8 +56,15 @@ export class profile extends Component {
                 <p>{bio}</p>
               </div>
               <div>
-                <EditProfile />
-                <Button size='sm' variant='outline-dark'>Change Picture</Button>
+              {
+                this.props.user.authenticated ? (
+                  <Fragment>
+                    <EditProfile />
+                    <Button size='sm' variant='outline-dark' onClick={this.handleEditPicture}>Change Picture</Button>
+                  </Fragment>
+                ) : null
+              }                
+                
               </div>
             </Col>
           </Row>
@@ -98,7 +119,8 @@ export class profile extends Component {
 }
 
 profile.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  uploadImage: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -106,6 +128,7 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
+  uploadImage
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(profile)

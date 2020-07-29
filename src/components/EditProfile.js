@@ -26,7 +26,6 @@ export class EditProfile extends Component {
     this.mapUserToState(this.props.user.credentials)
   }
   mapUserToState = (user) => {
-    console.log(user)
     this.setState({
       userName: user.userName ? user.userName : '',
       name: user.name ? user.name : '',
