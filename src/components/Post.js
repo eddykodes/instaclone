@@ -40,7 +40,7 @@ export class Post extends Component {
               <li><a href='/comments'>View all {post.commentCount} comments</a></li>
               {
                 post.comments.map(comment => (
-                  <li><span><b>{comment.userName}</b> {comment.body}</span></li>
+                  <li key={comment.createdAt}><span><b>{comment.userName}</b> {comment.body}</span></li>
                 ))
               }
             </ul>
