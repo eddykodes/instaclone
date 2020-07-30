@@ -4,6 +4,7 @@ import profilePic from '../images/profile.jpg'
 
 // Components
 import EditProfile from '../components/EditProfile'
+import Followers from '../components/Followers'
 
 // Redux
 import { connect } from 'react-redux'
@@ -47,7 +48,7 @@ export class profile extends Component {
                 
                 <ul className="list-inline">
                   <li className="list-inline-item"><b>123</b> posts</li>
-                  <li className="list-inline-item"><b>{followerCount}</b> followers</li>
+                  <Followers followerCount={followerCount} />
                   <li className="list-inline-item"><b>{followingCount}</b> following</li>
                 </ul>
               </div>
