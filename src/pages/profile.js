@@ -45,10 +45,10 @@ export class profile extends Component {
               <div>
                 <h4>{userName}</h4>
                 
-                <ul class="list-inline">
-                  <li class="list-inline-item"><b>123</b> posts</li>
-                  <li class="list-inline-item"><b>{followerCount}</b> followers</li>
-                  <li class="list-inline-item"><b>{followingCount}</b> following</li>
+                <ul className="list-inline">
+                  <li className="list-inline-item"><b>123</b> posts</li>
+                  <li className="list-inline-item"><b>{followerCount}</b> followers</li>
+                  <li className="list-inline-item"><b>{followingCount}</b> following</li>
                 </ul>
               </div>
               <div className='my-3'>
