@@ -29,18 +29,30 @@ export class Followers extends Component {
         <Modal show={this.state.show} onHide={this.handleClose}>
           <div className='p-3'>
 
-            <div className='d-flex justify-content-between mb-2'>
-              <div className='home-profile d-flex align-items-center'>
-                <Image src={this.props.user.credentials.userImage} alt='profile' className='mr-3'/>
-                <ul className='list-unstyled m-0'>
-                  <li><b>{this.props.user.credentials.userName}</b></li>
-                  <li className='text-grey'>{this.props.user.credentials.userName}</li>
-                </ul>
-              </div>
-              <div className='d-flex align-items-center'>
-                <Button size='sm' variant='primary'>Follow</Button>
-              </div>
-            </div>
+          {
+            !this.props.user.loading
+            ? (
+              this.props.user.credentials.followers.map(follower => (
+                <div className='d-flex justify-content-between mb-2'>
+                  <div className='home-profile d-flex align-items-center'>
+                    <Image src={follower.userImage} alt='profile' className='mr-3'/>
+                    <ul className='list-unstyled m-0'>
+                      <li><b><a className='link-unstyled text-reset' href={`/users/${follower.userName}`}>{follower.userName}</a></b></li>
+                      <li className='text-grey'>{follower.userName}</li>
+                    </ul>
+                  </div>
+                  <div className='d-flex align-items-center'>
+                    <Button size='sm' variant='primary'>Follow</Button>
+                  </div>
+                </div>
+              ))
+            )
+            : (
+              <div>loading...</div>
+            )
+            
+          }
+
 
           </div>
         </Modal>
