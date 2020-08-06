@@ -32,7 +32,7 @@ export class Following extends Component {
             !this.props.user.loading
             ? (
               (this.props.followingCount > 0) ? (
-                this.props.user.credentials.followers.map(following => (
+                this.props.user.credentials.following.map(following => (
                   <div className='d-flex justify-content-between mb-2'>
                     <div className='home-profile d-flex align-items-center'>
                       <Image src={following.userImage} alt='profile' className='mr-3'/>
