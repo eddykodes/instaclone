@@ -68,7 +68,7 @@ export class MainNavbar extends Component {
       <Navbar className='navbar' expand="sm">
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <img
                 src={logo}
                 height="25"

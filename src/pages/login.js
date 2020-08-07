@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import phoneImage from '../images/phone.png'
 import logoImage from '../images/logo.png'
 
@@ -47,6 +47,10 @@ export class login extends Component {
   }
   render() {
     
+    if (this.props.user.authenticated) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className='root login'>
         <Container>

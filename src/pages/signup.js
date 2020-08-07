@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import logoImage from '../images/logo.png'
 
 // Redux
@@ -55,6 +55,11 @@ export class signup extends Component {
     })
   }
   render() {
+
+    if (this.props.user.authenticated) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className='root signup'>
         <Container>

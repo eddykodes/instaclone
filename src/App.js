@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
@@ -21,6 +21,7 @@ import notifications from './pages/notifications'
 
 // Components
 import MainNavbar from './components/MainNavbar'
+import PrivateRoute from './components/PrivateRoute'
 
 axios.defaults.baseURL = 'https://us-central1-instaclone-df267.cloudfunctions.net/api'
 
@@ -40,6 +41,7 @@ if(token){
   }
 }
 
+
 function App() {
   return (
     <Provider store={store}>
@@ -47,12 +49,12 @@ function App() {
         <div className="App">
           <MainNavbar />
           <Switch>
-            <Route exact path='/' component={home} />
-            <Route exact path='/messages' component={messages} />
-            <Route exact path='/profile' component={profile} />
+            <PrivateRoute exact path='/' component={home} />
+            <PrivateRoute exact path='/messages' component={messages} />
+            <PrivateRoute exact path='/profile' component={profile} />
             <Route exact path='/login' component={login} />
             <Route exact path='/signup' component={signup} />
-            <Route exact path='/notifications' component={notifications} />
+            <PrivateRoute exact path='/notifications' component={notifications} />
           </Switch>
         </div>      
       </Router>
