@@ -86,3 +86,21 @@ export const unlikePost = (postId) => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+// Get user data for user pages
+export const getUserData = (userName) => (dispatch) => {
+  dispatch({ type: LOADING_DATA })
+  axios.get(`/users/${userName}`)
+    .then(res => {
+      dispatch({
+        type: SET_POSTS,
+        payload: res.data.posts
+      })
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_POSTS,
+        payload: null
+      })
+    })
+}

@@ -15,6 +15,7 @@ import { logoutUser, getUserData } from './redux/actions/userActions'
 import home from './pages/home'
 import messages from './pages/messages'
 import profile from './pages/profile'
+import users from './pages/users'
 import login from './pages/login'
 import signup from './pages/signup'
 import notifications from './pages/notifications'
@@ -54,6 +55,7 @@ function App() {
             <PrivateRoute exact path='/profile' component={profile} />
             <Route exact path='/login' component={login} />
             <Route exact path='/signup' component={signup} />
+            <Route exact path='/:userName' component={users} />
             <PrivateRoute exact path='/notifications' component={notifications} />
           </Switch>
         </div>      
