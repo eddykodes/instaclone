@@ -75,3 +75,21 @@ export const uploadImage = (formData) => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+export const followUser = (userName) => (dispatch) => {
+  dispatch({ type: LOADING_USER })
+  axios.post(`/users/${userName}/follow`)
+    .then(res => {
+      dispatch(getUserData())
+    })
+    .catch(err => console.log(err))
+}
+
+export const unfollowUser = (userName) => (dispatch) => {
+  dispatch({ type: LOADING_USER })
+  axios.post(`/users/${userName}/unfollow`)
+    .then(res => {
+      dispatch(getUserData())
+    })
+    .catch(err => console.log(err))
+}

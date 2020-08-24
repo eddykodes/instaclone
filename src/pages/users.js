@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import profilePic from '../images/profile.jpg'
@@ -6,6 +6,7 @@ import profilePic from '../images/profile.jpg'
 // Components
 import Followers from '../components/Followers'
 import Following from '../components/Following'
+import FollowButton from '../components/FollowButton'
 
 // Redux
 import { connect } from 'react-redux'
@@ -17,9 +18,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
-import Axios from 'axios'
 
 export class profile extends Component {
   state = {
@@ -44,6 +43,7 @@ export class profile extends Component {
       })
       .catch(err => console.log(err))
   }
+
   render() {
     const {userName, userImage, name, bio, followerCount, followingCount} = this.state.profile
     return (
@@ -67,6 +67,11 @@ export class profile extends Component {
                 <b>{name}</b>
                 <p>{bio}</p>
               </div>
+              {
+                this.props.user.authenticated ? (
+                  <FollowButton userName={this.props.match.params.userName}/>
+                ) : null
+              }   
             </Col>
           </Row>
           <hr />
