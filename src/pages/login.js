@@ -40,6 +40,14 @@ export class login extends Component {
     }
     this.props.loginUser(userData, this.props.history)
   }
+  handleGuestSubmit = (event) => {
+    event.preventDefault()
+    const guestData = {
+      email: "guest@gmail.com",
+      password: "guestpassword"
+    }
+    this.props.loginUser(guestData, this.props.history)
+  }
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -64,7 +72,6 @@ export class login extends Component {
               <div className='LoginForm borderblock text-center'>
 
                 <Image className='LoginForm-Logo' src={logoImage} />
-
                 
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formBasicEmail">
@@ -76,12 +83,19 @@ export class login extends Component {
                     <Form.Control.Feedback type='invalid'>{this.state.errors.password}</Form.Control.Feedback>
                   </Form.Group>
                   <Button variant="primary" type="submit" size='sm' disabled={this.props.UI.loading} block>
-                    Submit
+                    Log In
                   </Button>
                 </Form>
+
+                <Form onSubmit={this.handleGuestSubmit} className='mt-2'>
+                  <Button variant="secondary" type="submit" size='sm' disabled={this.props.UI.loading} block>
+                    Sign in as Guest
+                  </Button>
+                </Form>
+
                 <hr />
-                <div>
-                  <span>Don't have an account? <b><Link to='/signup'>Sign up</Link></b></span></div>
+                <span>Don't have an account? <b><Link to='/signup'>Sign up</Link></b></span>
+
               </div>
 
             </Col>
