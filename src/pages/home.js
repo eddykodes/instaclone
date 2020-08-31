@@ -11,7 +11,7 @@ import Image from 'react-bootstrap/Image'
 // Components
 import Post from '../components/Post'
 import NewPost from '../components/NewPost'
-import ProfileCard from '../components/ProfileCard'
+import Suggestions from '../components/Suggestions'
 
 // Redux
 import { connect } from 'react-redux'
@@ -61,17 +61,7 @@ export class home extends Component {
                   null
                 )
               }
-              <div className='home-suggestions'>
-                <div className='px-3 d-flex justify-content-between'>
-                  <b className='text-grey'>Suggestions For You</b>
-                  <span className='ml-auto'>See All</span>
-                </div>
-                <ProfileCard profile={profilePic} username='Username' followerName='name' followerCount='5'/>
-                <ProfileCard profile={profilePic} username='Username2' followerName='name2' followerCount='6'/>
-                <ProfileCard profile={profilePic} username='Username3' followerName='name3' followerCount='12'/>
-                <ProfileCard profile={profilePic} username='Username4' followerName='name3' followerCount='2'/>
-              </div>
-
+              <Suggestions />
             </Col>
           </Row>
         </Container>
