@@ -12,6 +12,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
 
 // Icons
 import { 
@@ -69,7 +70,7 @@ export class MainNavbar extends Component {
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand href="/">
-              <img
+              <Image
                 src={logo}
                 height="25"
                 className="d-inline-block align-top"
@@ -94,7 +95,7 @@ export class MainNavbar extends Component {
                   </LinkContainer>
                   <Dropdown>
                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                      <Nav.Link><img className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user'/></Nav.Link>
+                      <Nav.Link><Image className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user' roundedCircle /></Nav.Link>
                     </Dropdown.Toggle>
                     <Dropdown.Menu as={CustomMenu}>
                       <LinkContainer to='/profile'>
