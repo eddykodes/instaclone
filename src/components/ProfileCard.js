@@ -13,12 +13,12 @@ export class ProfileCard extends Component {
 
     return (
       <div className='ProfileCard d-flex align-items-center px-3 pt-2'>
-        <Image src={profile} alt='profile'/>
+        <Image src={profile} alt='profile' roundedCircle/>
         <ul className='list-unstyled m-0'>
           <li className='link-unstyled' onClick={() => goToProfile(userName)}><b>{userName}</b></li>
           <li className='sub-text text-grey'>Followed by {followerCount} others</li>
         </ul>
-        <a href={`/${userName}`} className='ml-auto'><b>Follow</b></a>
+        <a href={`/${userName}`} className='ml-auto'><b>View</b></a>
       </div>
     )
   }
