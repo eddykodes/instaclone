@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import profilePic from '../images/profile.jpg'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -51,7 +50,7 @@ export class home extends Component {
               {
                 this.props.user.authenticated ? (
                   <div className='home-profile d-flex align-items-center p-3 mb-3'>
-                    <Image src={profilePic} alt='profile' className='mr-3'/>
+                    <Image src={this.props.user.credentials.userImage} alt='profile' className='mr-3'/>
                     <ul className='list-unstyled m-0'>
                       <li><b>{this.props.user.credentials.userName}</b></li>
                       <li className='text-grey'>{this.props.user.credentials.name}</li>

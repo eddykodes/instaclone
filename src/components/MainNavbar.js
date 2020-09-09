@@ -3,6 +3,9 @@ import { LinkContainer } from 'react-router-bootstrap'
 import logo from '../images/logo.png'
 import PropTypes from 'prop-types'
 
+// Components
+import MainNavbarNotifications from './MainNavbarNotifications'
+
 // Redux
 import { connect } from 'react-redux'
 import { logoutUser } from '../redux/actions/userActions'
@@ -17,7 +20,6 @@ import Image from 'react-bootstrap/Image'
 // Icons
 import { 
   ChatSquare, 
-  Heart,
   House,
 } from 'react-bootstrap-icons'
 
@@ -88,12 +90,12 @@ export class MainNavbar extends Component {
                     <Nav.Link><House size={20}/></Nav.Link>
                   </LinkContainer>
                   <LinkContainer to='/notifications'>
-                    <Nav.Link><Heart size={20}/></Nav.Link>
+                    <MainNavbarNotifications />
                   </LinkContainer>
                   <LinkContainer to='/messages'>
                     <Nav.Link><ChatSquare size={20}/></Nav.Link>
                   </LinkContainer>
-                  <Dropdown>
+                  <Dropdown alignRight>
                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
                       <Nav.Link><Image className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user' roundedCircle /></Nav.Link>
                     </Dropdown.Toggle>
