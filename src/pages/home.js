@@ -9,6 +9,7 @@ import Image from 'react-bootstrap/Image'
 
 // Components
 import Post from '../components/Post'
+import PostSkeleton from '../components/PostSkeleton'
 import NewPost from '../components/NewPost'
 import Suggestions from '../components/Suggestions'
 
@@ -42,7 +43,7 @@ export class home extends Component {
                     <Post post={post} key={post.postId} />
                   ))
                 ) : (
-                  <p>Loading...</p>
+                  <PostSkeleton />
                 )
               }
             </Col>
