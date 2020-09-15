@@ -112,9 +112,6 @@ export class MainNavbarNotifications extends Component {
 
     return (
       <Dropdown alignRight>
-        {
-          console.log(notifications)
-        }
         <Dropdown.Toggle as={CustomToggle}  id="dropdown-custom-components">
           <Nav.Link onClick={() => this.onMenuOpened()}><Heart size={20}/>{notificationsBadge}</Nav.Link>
         </Dropdown.Toggle>

@@ -4,7 +4,7 @@ import axios from 'axios'
 // Components
 import ProfileCard from './ProfileCard'
 
-function Suggestions() {
+function Suggestions(props) {
   const [users, setUsers] = useState([])
 
   useEffect(()=> {
@@ -25,9 +25,10 @@ function Suggestions() {
       <span className='ml-auto'>See All</span>
     </div>
     {
-      users && users.map(user => (
-        <ProfileCard key={user.userName} profile={user.userImage} userName={user.userName} followerName={user.name} followerCount={user.followerCount}/>
-      ))
+      users && users.filter(user => user.userName !== props.authenticatedUser)
+        .map(user => (
+          <ProfileCard key={user.userName} profile={user.userImage} userName={user.userName} followerName={user.name} followerCount={user.followerCount}/>
+        ))
     }
   </div>    
   )

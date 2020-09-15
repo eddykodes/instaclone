@@ -61,7 +61,7 @@ export class home extends Component {
                   null
                 )
               }
-              <Suggestions />
+              <Suggestions authenticatedUser={this.props.user.credentials.userName}/>
             </Col>
           </Row>
         </Container>
