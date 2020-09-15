@@ -56,7 +56,7 @@ function App() {
             <PrivateRoute exact path='/notifications' component={notifications} />
             <Route exact path='/login' component={login} />
             <Route exact path='/signup' component={signup} />
-            <Route exact path='/:userName' component={users} />
+            <PrivateRoute exact path='/:userName' component={users} />
           </Switch>
         </div>      
       </Router>
