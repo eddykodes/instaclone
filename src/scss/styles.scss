@@ -251,3 +251,20 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   padding-bottom: 100%;
   background-color: rgba(0,0,0,0.6);
 }
+
+svg+span.badge {
+  position: relative;
+  top: 8px;
+  left: -6px;
+  margin-right: -12px;
+}
+
+.notification-image {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+}
+
+.notification-content {
+  font-size: 10pt;
+}

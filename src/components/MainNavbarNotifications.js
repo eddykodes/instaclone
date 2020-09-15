@@ -12,13 +12,11 @@ import { markNotificationsRead } from '../redux/actions/userActions'
 import Nav from 'react-bootstrap/Nav'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Badge from 'react-bootstrap/Badge'
+import Image from 'react-bootstrap/Image'
 
 // Icons
 import { 
   Heart,
-  Chat,
-  Cursor
-
 } from 'react-bootstrap-icons'
 
 // The forwardRef is important!!
@@ -48,7 +46,7 @@ const CustomMenu = React.forwardRef(
         className={className}
         aria-labelledby={labeledBy}
       >
-        <ul className="list-unstyled">
+        <ul className="list-unstyled mb-0">
           {React.Children.toArray(children).filter(
             (child) =>
               !value || child.props.children.toLowerCase().startsWith(value),
@@ -60,20 +58,15 @@ const CustomMenu = React.forwardRef(
 );
 
 export class MainNavbarNotifications extends Component {
-  state = {
-    anchorEl: null
-  }
   render() {
-
     const notifications = this.props.notifications
-    const anchorEl = this.state.anchorEl
 
     dayjs.extend(relativeTime)
 
     let notificationsBadge
 
     if(notifications && notifications.length > 0){
-      notifications.filter(not => not.read === false) > 0
+      notifications.filter(not => not.read === false).length > 0
         ? (notificationsBadge = (
           <Badge pill variant='danger'>{notifications.filter(not => not.read === false).length}</Badge>
         )) : (
@@ -88,15 +81,18 @@ export class MainNavbarNotifications extends Component {
         notifications.map(not => {
           const verb = not.type ==='like' ? 'liked' : 'commented on'
           const time = dayjs(not.createdAt).fromNow()
-          const icon = not.type === 'like' ? (
-            <Heart />
-          ) : (
-            <Chat />
-          )
 
           return (
-            <LinkContainer to='/profile'>
-              <Dropdown.Item key={not.createdAt}>{icon} {not.sender} {verb} your post {time}</Dropdown.Item>
+            <LinkContainer to={`/${not.recipient}/post/${not.postId}`} className='mb-2'>
+              <Dropdown.Item key={not.createdAt} className='px-3'>
+              <div className='notification-content d-flex align-items-center'>
+                <Image src={not.senderImage} roundedCircle className='notification-image mr-2' />
+                <ul className='list-unstyled m-0'>
+                  <li className='link-unstyled'><b>{not.sender}</b></li>
+                  <li className='sub-text text-grey'>{verb} your post {time}</li>
+                </ul>
+              </div>
+        </Dropdown.Item>
             </LinkContainer>
           )
         })
@@ -114,6 +110,10 @@ export class MainNavbarNotifications extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu as={CustomMenu}>
           {notificationsMarkup}
+          <hr />
+          <LinkContainer to='/notifications'>
+            <Dropdown.Item className='notification-content text-center mt-n2'>See All Notifications</Dropdown.Item>
+          </LinkContainer>
         </Dropdown.Menu>
       </Dropdown>
     )

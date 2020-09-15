@@ -50,7 +50,7 @@ const CustomMenu = React.forwardRef(
         className={className}
         aria-labelledby={labeledBy}
       >
-        <ul className="list-unstyled">
+        <ul className="list-unstyled mb-0">
           {React.Children.toArray(children).filter(
             (child) =>
               !value || child.props.children.toLowerCase().startsWith(value),
