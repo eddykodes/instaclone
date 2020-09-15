@@ -60,11 +60,13 @@ const CustomMenu = React.forwardRef(
 export class MainNavbarNotifications extends Component {
 
   onMenuOpened = () => {
-    let unreadNotificationsIds = this.props.notifications
+    if (this.props.notifications.length > 0) {
+      let unreadNotificationsIds = this.props.notifications
       .filter(not => !not.read)
       .map(not => not.notificationId)
 
-    this.props.markNotificationsRead(unreadNotificationsIds)
+      this.props.markNotificationsRead(unreadNotificationsIds)
+    }
   }
 
   render() {
@@ -107,7 +109,7 @@ export class MainNavbarNotifications extends Component {
           )
         })
       ) : (
-        <span>no new notifications</span>
+        <Dropdown.Item className='notification-content mx-auto'>No new notifications</Dropdown.Item>
       )
 
     return (

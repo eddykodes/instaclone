@@ -12,7 +12,7 @@ export class ProfileChat extends Component {
         <Image src={profile} alt='profile'/>
         <ul className='list-unstyled m-0'>
           <li><b>{username}</b></li>
-          <li><span class="d-inline-block text-truncate" style={{maxWidth: '150px'}}>{message}</span></li>
+          <li><span className="d-inline-block text-truncate" style={{maxWidth: '150px'}}>{message}</span></li>
         </ul>
       </div>
     )

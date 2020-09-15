@@ -1,11 +1,7 @@
 import React from 'react'
 
-// Components
-import CommentForm from './CommentForm'
-import LikeButton from './LikeButton'
-
 // Bootstrap
-import { Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
+import { Chat, Bookmark, ThreeDots, Heart } from 'react-bootstrap-icons'
 
 export const PostSkeleton = () => {
   return (
@@ -18,7 +14,7 @@ export const PostSkeleton = () => {
       </div>
       <div className='Post-Options d-flex align-items-center p-3'>
         <div className='mr-auto'>
-          <LikeButton/>
+          <Heart className='mr-3' size={25} />
           <Chat className='mb-1' size={25}/>
         </div>
         <div><Bookmark size={25}/></div>        
@@ -33,7 +29,10 @@ export const PostSkeleton = () => {
           </ul>
           <span className='Post-Caption-Date skeleton-line'></span>
       </div>
-      <CommentForm/>
+      <div className='Post-Comment d-flex justify-content-between p-3'>
+        <input type='text' className='w-100' name='body' placeholder='Add a comment' />
+        <span className='btn-link link-unstyled'><b>Post</b></span>
+      </div>
     </div>
   )
 }
