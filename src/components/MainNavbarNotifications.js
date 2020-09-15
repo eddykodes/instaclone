@@ -122,7 +122,7 @@ export class MainNavbarNotifications extends Component {
           {notificationsMarkup}
           <hr />
           <LinkContainer to='/notifications'>
-            <Dropdown.Item className='notification-content text-center mt-n2'>See All Notifications</Dropdown.Item>
+            <Dropdown.Item className='notification-content text-center mt-n2 mx-auto'>See All Notifications</Dropdown.Item>
           </LinkContainer>
         </Dropdown.Menu>
       </Dropdown>
