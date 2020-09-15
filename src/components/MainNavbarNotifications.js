@@ -58,6 +58,15 @@ const CustomMenu = React.forwardRef(
 );
 
 export class MainNavbarNotifications extends Component {
+
+  onMenuOpened = () => {
+    let unreadNotificationsIds = this.props.notifications
+      .filter(not => !not.read)
+      .map(not => not.notificationId)
+
+    this.props.markNotificationsRead(unreadNotificationsIds)
+  }
+
   render() {
     const notifications = this.props.notifications
 
@@ -87,10 +96,11 @@ export class MainNavbarNotifications extends Component {
               <Dropdown.Item key={not.createdAt} className='px-3'>
               <div className='notification-content d-flex align-items-center'>
                 <Image src={not.senderImage} roundedCircle className='notification-image mr-2' />
-                <ul className='list-unstyled m-0'>
-                  <li className='link-unstyled'><b>{not.sender}</b></li>
+                <ul className='list-unstyled m-0 w-100'>
+                  <li className='link-unstyled'><b>{not.sender}</b>{not.read === false ? (<span className='float-right notification-dot'></span>) : null }</li>
                   <li className='sub-text text-grey'>{verb} your post {time}</li>
                 </ul>
+                
               </div>
         </Dropdown.Item>
             </LinkContainer>
@@ -105,8 +115,8 @@ export class MainNavbarNotifications extends Component {
         {
           console.log(notifications)
         }
-        <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-          <Nav.Link><Heart size={20}/>{notificationsBadge}</Nav.Link>
+        <Dropdown.Toggle as={CustomToggle}  id="dropdown-custom-components">
+          <Nav.Link onClick={() => this.onMenuOpened()}><Heart size={20}/>{notificationsBadge}</Nav.Link>
         </Dropdown.Toggle>
         <Dropdown.Menu as={CustomMenu}>
           {notificationsMarkup}

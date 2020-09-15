@@ -267,4 +267,13 @@ svg+span.badge {
 
 .notification-content {
   font-size: 10pt;
+  width: 250px;
+}
+
+.notification-dot {
+  height: 6px;
+  width: 6px;
+  background-color: rgba(var(--d69,0,149,246),1);
+  border-radius: 50%;
+  display: inline-block;
 }
