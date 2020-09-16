@@ -94,7 +94,7 @@ export class MainNavbarNotifications extends Component {
           const time = dayjs(not.createdAt).fromNow()
 
           return (
-            <LinkContainer to={`/${not.recipient}/post/${not.postId}`} className='mb-2'>
+            <LinkContainer to={`/${not.recipient}/posts/${not.postId}`} className='mb-2'>
               <Dropdown.Item key={not.createdAt} className='px-3'>
               <div className='notification-content d-flex align-items-center'>
                 <Image src={not.senderImage} roundedCircle className='notification-image mr-2' />
@@ -130,7 +130,7 @@ export class MainNavbarNotifications extends Component {
 }
 
 MainNavbarNotifications.propTypes = {
-  notifications: PropTypes.object.isRequired,
+  notifications: PropTypes.array.isRequired,
   markNotificationsRead: PropTypes.func.isRequired
 }
 

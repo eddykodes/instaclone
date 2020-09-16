@@ -51,7 +51,7 @@ export class notifications extends Component {
 }
 
 notifications.propTypes = {
-  notifications: PropTypes.object.isRequired,
+  notifications: PropTypes.array.isRequired,
   markNotificationsRead: PropTypes.func.isRequired
 }
 

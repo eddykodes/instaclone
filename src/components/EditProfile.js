@@ -81,7 +81,7 @@ export class EditProfile extends Component {
               </Form.Group>
               <div className='d-flex justify-content-around mt-3'>
                 <span className='link-unstyled' onClick={this.handleClose}><b>Cancel</b></span>
-                <span className='btn-link link-unstyled' onClick={this.handleSubmit}><b>Post</b></span>
+                <span className='btn-link link-unstyled' onClick={this.handleSubmit}><b>Update</b></span>
               </div>
             </Form>
           </div>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import profilePic from '../images/profile.jpg'
 
@@ -40,8 +40,6 @@ export class profile extends Component {
             <Col className='text-center' xs={12} sm={6} md={4}>
               <Image className='Profile-Image' src={userImage}/>
               <input type='file' id='profileImageInput' hidden='hidden' onChange={this.handleImageChange} />
-
-              
             </Col>
             <Col>
               <div>
@@ -58,15 +56,8 @@ export class profile extends Component {
                 <p>{bio}</p>
               </div>
               <div>
-              {
-                this.props.user.authenticated ? (
-                  <Fragment>
-                    <EditProfile />
-                    <Button size='sm' variant='outline-dark' onClick={this.handleEditPicture}>Change Picture</Button>
-                  </Fragment>
-                ) : null
-              }                
-                
+                <EditProfile />
+                <Button size='sm' variant='outline-dark' onClick={this.handleEditPicture}>Change Picture</Button>
               </div>
             </Col>
           </Row>
@@ -76,7 +67,6 @@ export class profile extends Component {
               <Nav
                 activeKey="/profile"
                 className='justify-content-center Profile-Nav'
-                onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
               >
                 <Nav.Item>
                   <Nav.Link className='d-flex align-items-center' eventKey="link-posts"><Grid3x3 /> <span className='ml-2'>Posts</span></Nav.Link>
@@ -92,7 +82,6 @@ export class profile extends Component {
                 </Nav.Item>
               </Nav>
             </Col>
-
           </Row>
           <Row noGutters className='Profile-Post-Grid'>
             <Col xs={4} md={4}>

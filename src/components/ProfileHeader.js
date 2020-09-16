@@ -6,16 +6,12 @@ import Following from '../components/Following'
 import FollowButton from '../components/FollowButton'
 
 // Bootstrap
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 
 function ProfileHeader(props) {
   const { userName, userImage, name, bio, followerCount, followingCount } = props.profile
-
-  console.log(props.profile)
-  console.log('test')
 
   return (
     <Row className='Profile-Details'>

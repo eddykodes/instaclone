@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import profilePic from '../images/profile.jpg'
 
 // Components
-import Followers from '../components/Followers'
-import Following from '../components/Following'
-import FollowButton from '../components/FollowButton'
 import PostDialog from '../components/PostDialog'
 import ProfileHeader from '../components/ProfileHeader'
 
@@ -18,7 +14,6 @@ import { getUserData } from '../redux/actions/dataActions'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
 import Nav from 'react-bootstrap/Nav'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
@@ -46,9 +41,7 @@ export class profile extends Component {
   }
 
   render() {
-    // const { userName, userImage, name, bio, followerCount, followingCount } = this.state.profile
     const { posts, loading } = this.props.data
-    const { postIdParam } = this.state
 
     const postsMarkup = loading ? (
       <span>loading...</span>
@@ -78,7 +71,6 @@ export class profile extends Component {
               <Nav
                 activeKey="/profile"
                 className='justify-content-center Profile-Nav'
-                onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
               >
                 <Nav.Item>
                   <Nav.Link className='d-flex align-items-center' eventKey="link-posts"><Grid3x3 /> <span className='ml-2'>Posts</span></Nav.Link>
