@@ -223,11 +223,11 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   }
 }
 
-
 .skeleton-line {
   background-color: rgba(0,0,0,0.6);
   height: 15px;
   width: 50%;
+  min-width: 60px;
 }
 
 .skeleton-profile {
@@ -237,6 +237,15 @@ $border-color: rgba(var(--ce3,239,239,239),1);
   margin-right: 10px;       
   border-radius: 50%;
 }
+
+.skeleton-profile-large {
+  height: 150px;
+  width: 150px;
+  background-color: rgba(0,0,0,0.6);
+  margin-right: 10px;       
+  border-radius: 50%;
+}
+
 
 .skeleton-postwrapper {
   box-sizing: border-box;

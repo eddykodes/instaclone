@@ -6,6 +6,7 @@ import EditProfile from '../components/EditProfile'
 import Followers from '../components/Followers'
 import Following from '../components/Following'
 import PostDialog from '../components/PostDialog'
+import ProfileHeaderSkeleton from '../components/ProfileHeaderSkeleton'
 
 // Redux
 import { connect } from 'react-redux'
@@ -43,8 +44,24 @@ export class profile extends Component {
     const { posts, loading } = this.props.data
 
     const postsMarkup = loading ? (
-      <span>loading...</span>
-    ) : posts === null ? (
+      <>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+      </>
+    ) : posts.length === 0 ? (
       <p>No posts yet</p>
     ) : (
       posts.map(post => (
@@ -57,30 +74,37 @@ export class profile extends Component {
     return (
       <div className='root profile'>
         <Container>
-          <Row className='Profile-Details'>
-            <Col className='text-center' xs={12} sm={6} md={4}>
-              <Image className='Profile-Image' src={userImage}/>
-              <input type='file' id='profileImageInput' hidden='hidden' onChange={this.handleImageChange} />
-            </Col>
-            <Col>
-              <div>
-                <h4>{userName}</h4>
-                
-                <ul className="list-inline">
-                  <Followers followerCount={followerCount} />
-                  <Following followingCount={followingCount} />
-                </ul>
-              </div>
-              <div className='my-3'>
-                <b>{name}</b>
-                <p>{bio}</p>
-              </div>
-              <div>
-                <EditProfile />
-                <Button size='sm' variant='outline-dark' onClick={this.handleEditPicture}>Change Picture</Button>
-              </div>
-            </Col>
-          </Row>
+          {
+            this.props.user.loading ? (
+              <ProfileHeaderSkeleton />
+            ) : (
+              <Row className='Profile-Details'>
+                <Col className='text-center' xs={12} sm={6} md={4}>
+                  <Image className='Profile-Image' src={userImage}/>
+                  <input type='file' id='profileImageInput' hidden='hidden' onChange={this.handleImageChange} />
+                </Col>
+                <Col>
+                  <div>
+                    <h4>{userName}</h4>
+                    
+                    <ul className="list-inline">
+                      <Followers followerCount={followerCount} />
+                      <Following followingCount={followingCount} />
+                    </ul>
+                  </div>
+                  <div className='my-3'>
+                    <b>{name}</b>
+                    <p>{bio}</p>
+                  </div>
+                  <div>
+                    <EditProfile />
+                    <Button size='sm' variant='outline-dark' onClick={this.handleEditPicture}>Change Picture</Button>
+                  </div>
+                </Col>
+              </Row>
+            )
+          }
+
           <hr />
           <Row>
             <Col>

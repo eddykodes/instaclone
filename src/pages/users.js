@@ -5,6 +5,7 @@ import axios from 'axios'
 // Components
 import PostDialog from '../components/PostDialog'
 import ProfileHeader from '../components/ProfileHeader'
+import ProfileHeaderSkeleton from '../components/ProfileHeaderSkeleton'
 
 // Redux
 import { connect } from 'react-redux'
@@ -44,8 +45,24 @@ export class users extends Component {
     const { posts, loading } = this.props.data
 
     const postsMarkup = loading ? (
-      <span>loading...</span>
-    ) : posts === null ? (
+      <>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div className='skeleton-postwrapper'>
+            <div className='skeleton-post'></div>
+          </div>
+        </Col>
+      </>
+    ) : posts.length === 0 ? (
       <p>No posts yet</p>
     ) : (
       posts.map(post => (
@@ -62,9 +79,9 @@ export class users extends Component {
             this.state.profile && !this.props.user.loading ? (
               <ProfileHeader profile={this.state.profile} authUser={this.props.user.credentials.userName} />
             ) : (
-              <span>loading</span>
+              <ProfileHeaderSkeleton />
             )
-          }
+          } 
           <hr />
           <Row>
             <Col>
