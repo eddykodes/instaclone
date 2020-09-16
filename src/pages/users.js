@@ -7,6 +7,8 @@ import profilePic from '../images/profile.jpg'
 import Followers from '../components/Followers'
 import Following from '../components/Following'
 import FollowButton from '../components/FollowButton'
+import PostDialog from '../components/PostDialog'
+import ProfileHeader from '../components/ProfileHeader'
 
 // Redux
 import { connect } from 'react-redux'
@@ -22,17 +24,16 @@ import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
   state = {
-    profile: {
-      userName: '',
-      userImage: '',
-      name: '',
-      bio: '',
-      followerCount: 0,
-      followingCount: 0
-    },
+    profile: null,
+    postId: null
   }
   componentDidMount(){
     const userName = this.props.match.params.userName
+    const postId = this.props.match.params.postId
+
+    if(postId){
+      this.setState({ postIdParam: postId})
+    }
 
     this.props.getUserData(userName)
     axios.get(`/users/${userName}`)
@@ -45,35 +46,34 @@ export class profile extends Component {
   }
 
   render() {
-    const {userName, userImage, name, bio, followerCount, followingCount} = this.state.profile
+    // const { userName, userImage, name, bio, followerCount, followingCount } = this.state.profile
+    const { posts, loading } = this.props.data
+    const { postIdParam } = this.state
+
+    const postsMarkup = loading ? (
+      <span>loading...</span>
+    ) : posts === null ? (
+      <p>No posts yet</p>
+    ) : !postIdParam ? (
+      posts.map(post => (
+        <Col key={post.postId} xs={4} md={4}>
+          <PostDialog  post={post} />
+        </Col>
+      ))
+    ) : (
+      <span>single post</span>
+    )
+
     return (
       <div className='root profile'>
         <Container>
-          <Row className='Profile-Details'>
-            <Col className='text-center' xs={12} sm={6} md={4}>
-              <Image className='Profile-Image' src={userImage}/>
-            </Col>
-            <Col>
-              <div>
-                <h4>{userName}</h4>
-                
-                <ul className="list-inline">
-                  <li className="list-inline-item"><b>123</b> posts</li>
-                  <Followers followerCount={followerCount} />
-                  <Following followingCount={followingCount} />
-                </ul>
-              </div>
-              <div className='my-3'>
-                <b>{name}</b>
-                <p>{bio}</p>
-              </div>
-              {
-                this.props.user.authenticated ? (
-                  <FollowButton userName={this.props.match.params.userName}/>
-                ) : null
-              }   
-            </Col>
-          </Row>
+          {
+            this.state.profile ? (
+              <ProfileHeader profile={this.state.profile}/>
+            ) : (
+              <span>loading</span>
+            )
+          }
           <hr />
           <Row>
             <Col>
@@ -99,24 +99,9 @@ export class profile extends Component {
 
           </Row>
           <Row noGutters className='Profile-Post-Grid'>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
+            {
+              postsMarkup
+            }
           </Row>
         </Container>
       </div>
@@ -126,10 +111,12 @@ export class profile extends Component {
 
 profile.propTypes = {
   user: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   getUserData: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
+  data: state.data,
   user: state.user
 })
 

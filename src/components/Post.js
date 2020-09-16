@@ -23,7 +23,7 @@ export class Post extends Component {
         <div className='Post-Header d-flex align-items-center px-3'>
           <Image src={post.userImage} alt='profile' className='mr-2'/><span><b>{post.userName}</b></span><span className='ml-auto'><ThreeDots size={20}/></span>
         </div>
-        <Image src={post.userImage} alt='post' fluid />
+        <PostDialog post={this.props.post}/>
         <div className='Post-Options d-flex align-items-center p-3'>
           <div className='mr-auto'>
             <LikeButton postId={post.postId}/>
@@ -36,10 +36,10 @@ export class Post extends Component {
               <span>Liked by <b>{post.likeCount} others</b></span>
             </div>
             <ul className='list-unstyled mb-0'>
-              <li><b>{post.userName}</b> {post.body}</li>
-              <PostDialog post={this.props.post}/>
+              <li className='mb-2'>{post.body}</li>
+              <li><span>View all {post.commentCount} comments</span></li>
               {
-                post.comments.map(comment => (
+                post.comments.slice(0,4).map(comment => (
                   <li key={comment.createdAt}><span><b>{comment.userName}</b> {comment.body}</span></li>
                 ))
               }

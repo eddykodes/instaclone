@@ -26,9 +26,7 @@ function PostDialog(props) {
 
   return (
     <>
-    <li onClick={handleShow}>
-      <span>View all {post.commentCount} comments</span>
-    </li>
+    <Image fluid src={post.userImage} onClick={handleShow}/>
 
     <Modal show={show} onHide={handleClose} size='xl'>
       <Row className='Post borderblock m-0' noGutters>
