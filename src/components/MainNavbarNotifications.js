@@ -94,17 +94,15 @@ export class MainNavbarNotifications extends Component {
           const time = dayjs(not.createdAt).fromNow()
 
           return (
-            <LinkContainer to={`/${not.recipient}/posts/${not.postId}`} key={`${not.createdAt}`} className='mb-2'>
-              <Dropdown.Item key={not.createdAt} className='px-3'>
-                <div className='notification-content d-flex align-items-center'>
-                  <Image src={not.senderImage} roundedCircle className='notification-image mr-2' />
-                  <ul className='list-unstyled m-0 w-100'>
-                    <li className='link-unstyled'><b>{not.sender}</b>{not.read === false ? (<span className='float-right notification-dot'></span>) : null }</li>
-                    <li className='sub-text text-grey'>{verb} your post {time}</li>
-                  </ul>
-                </div>
-              </Dropdown.Item>
-            </LinkContainer>
+            <Dropdown.Item href={`/${not.recipient}/posts/${not.postId}`} key={not.createdAt} className='px-3 mb-2'>
+              <div className='notification-content d-flex align-items-center'>
+                <Image src={not.senderImage} roundedCircle className='notification-image mr-2' />
+                <ul className='list-unstyled m-0 w-100'>
+                  <li className='link-unstyled'><b>{not.sender}</b>{not.read === false ? (<span className='float-right notification-dot'></span>) : null }</li>
+                  <li className='sub-text text-grey'>{verb} your post {time}</li>
+                </ul>
+              </div>
+            </Dropdown.Item>
           )
         })
       ) : (

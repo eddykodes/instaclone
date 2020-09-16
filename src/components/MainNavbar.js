@@ -86,35 +86,29 @@ export class MainNavbar extends Component {
               this.props.user.authenticated 
               ? (
                 <Nav className="ml-auto">
-                  <LinkContainer to='/'>
-                    <Nav.Link><House size={20}/></Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to='/notifications'>
-                    <MainNavbarNotifications />
-                  </LinkContainer>
-                  <LinkContainer to='/messages'>
-                    <Nav.Link><ChatSquare size={20}/></Nav.Link>
-                  </LinkContainer>
+
+                  <Nav.Link href='/'><House size={20}/></Nav.Link>
+                  <MainNavbarNotifications />
                   <Dropdown alignRight>
                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                      <Nav.Link><Image className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user' roundedCircle /></Nav.Link>
+                      {
+                        !this.props.user.loading ? (
+                          <Nav.Link><Image className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user' roundedCircle /></Nav.Link>
+                        ) : (
+                          null
+                        )
+                      }
                     </Dropdown.Toggle>
                     <Dropdown.Menu as={CustomMenu}>
-                      <LinkContainer to={`/${this.props.user.credentials.userName}/profile`}>
-                        <Dropdown.Item>Profile</Dropdown.Item>
-                      </LinkContainer>
+                      <Dropdown.Item href={`/${this.props.user.credentials.userName}/profile`}>Profile</Dropdown.Item>
                       <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Nav> 
               ) : (
                 <Nav className="ml-auto">
-                  <LinkContainer to='/login'>
-                    <Nav.Link>Login</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to='/signup'>
-                    <Nav.Link>Signup</Nav.Link>
-                  </LinkContainer>
+                  <Nav.Link href='/login'>Login</Nav.Link>
+                  <Nav.Link href='/signup'>Signup</Nav.Link>
                 </Nav>
               )              
             }
