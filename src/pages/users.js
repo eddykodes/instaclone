@@ -54,15 +54,13 @@ export class profile extends Component {
       <span>loading...</span>
     ) : posts === null ? (
       <p>No posts yet</p>
-    ) : !postIdParam ? (
+    ) : (
       posts.map(post => (
         <Col key={post.postId} xs={4} md={4}>
           <PostDialog  post={post} />
         </Col>
       ))
-    ) : (
-      <span>single post</span>
-    )
+    ) 
 
     return (
       <div className='root profile'>

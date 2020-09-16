@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
@@ -14,7 +15,7 @@ import Col from 'react-bootstrap/Col'
 import { Chat, Bookmark, ThreeDots } from 'react-bootstrap-icons'
 
 function PostDialog(props) {
-
+  const {postId} = useParams()
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,6 +24,12 @@ function PostDialog(props) {
   const { ...post } = props.post
 
   dayjs.extend(relativeTime)
+
+  useEffect(() => {
+    if(post.postId === postId) {
+      handleShow()
+    }
+  }, [])
 
   return (
     <>
