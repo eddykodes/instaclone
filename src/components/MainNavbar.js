@@ -100,7 +100,7 @@ export class MainNavbar extends Component {
                       <Nav.Link><Image className='navbar-profile-image' src={this.props.user.credentials.userImage} alt='user' roundedCircle /></Nav.Link>
                     </Dropdown.Toggle>
                     <Dropdown.Menu as={CustomMenu}>
-                      <LinkContainer to='/profile'>
+                      <LinkContainer to={`/${this.props.user.credentials.userName}/profile`}>
                         <Dropdown.Item>Profile</Dropdown.Item>
                       </LinkContainer>
                       <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>

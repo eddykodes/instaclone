@@ -17,7 +17,7 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
-export class profile extends Component {
+export class users extends Component {
   state = {
     profile: null,
     postId: null
@@ -59,8 +59,8 @@ export class profile extends Component {
       <div className='root profile'>
         <Container>
           {
-            this.state.profile ? (
-              <ProfileHeader profile={this.state.profile}/>
+            this.state.profile && !this.props.user.loading ? (
+              <ProfileHeader profile={this.state.profile} authUser={this.props.user.credentials.userName} />
             ) : (
               <span>loading</span>
             )
@@ -99,7 +99,7 @@ export class profile extends Component {
   }
 }
 
-profile.propTypes = {
+users.propTypes = {
   user: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   getUserData: PropTypes.func.isRequired
@@ -114,4 +114,4 @@ const mapActionsToProps = {
   getUserData
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(profile)
+export default connect(mapStateToProps, mapActionsToProps)(users)

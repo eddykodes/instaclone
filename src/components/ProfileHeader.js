@@ -23,7 +23,6 @@ function ProfileHeader(props) {
           <h4>{userName}</h4>
           
           <ul className="list-inline">
-            <li className="list-inline-item"><b>123</b> posts</li>
             <Followers followerCount={followerCount} />
             <Following followingCount={followingCount} />
           </ul>
@@ -32,7 +31,13 @@ function ProfileHeader(props) {
           <b>{name}</b>
           <p>{bio}</p>
         </div>
-          <FollowButton userName={userName}/> 
+          {
+            userName !== props.authUser ? (
+              <FollowButton userName={userName}/> 
+            ) : (
+              null
+            )
+          }
       </Col>
     </Row>
   )

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import profilePic from '../images/profile.jpg'
 
 // Components
 import EditProfile from '../components/EditProfile'
 import Followers from '../components/Followers'
 import Following from '../components/Following'
+import PostDialog from '../components/PostDialog'
 
 // Redux
 import { connect } from 'react-redux'
 import { uploadImage } from '../redux/actions/userActions'
+import { getUserData } from '../redux/actions/dataActions'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -21,6 +22,12 @@ import Button from 'react-bootstrap/Button'
 import { Grid3x3, Tv, Heart, Bookmark } from 'react-bootstrap-icons'
 
 export class profile extends Component {
+
+  componentDidMount(){
+    const userName = this.props.match.params.userName
+    this.props.getUserData(userName)
+  }
+
   handleImageChange = (event) => {
     const image = event.target.files[0]
     const formData = new FormData()
@@ -32,7 +39,21 @@ export class profile extends Component {
     fileInput.click()
   }
   render() {
-    const {userName, userImage, name, bio, followerCount, followingCount} = this.props.user.credentials
+    const { userName, userImage, name, bio, followerCount, followingCount } = this.props.user.credentials
+    const { posts, loading } = this.props.data
+
+    const postsMarkup = loading ? (
+      <span>loading...</span>
+    ) : posts === null ? (
+      <p>No posts yet</p>
+    ) : (
+      posts.map(post => (
+        <Col key={post.postId} xs={4} md={4}>
+          <PostDialog  post={post} />
+        </Col>
+      ))
+    ) 
+
     return (
       <div className='root profile'>
         <Container>
@@ -46,7 +67,6 @@ export class profile extends Component {
                 <h4>{userName}</h4>
                 
                 <ul className="list-inline">
-                  <li className="list-inline-item"><b>123</b> posts</li>
                   <Followers followerCount={followerCount} />
                   <Following followingCount={followingCount} />
                 </ul>
@@ -84,24 +104,7 @@ export class profile extends Component {
             </Col>
           </Row>
           <Row noGutters className='Profile-Post-Grid'>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
-            <Col xs={4} md={4}>
-              <Image fluid src={profilePic} />
-            </Col>
+            {postsMarkup}
           </Row>
         </Container>
       </div>
@@ -111,15 +114,19 @@ export class profile extends Component {
 
 profile.propTypes = {
   user: PropTypes.object.isRequired,
-  uploadImage: PropTypes.func.isRequired
+  data: PropTypes.object.isRequired,
+  uploadImage: PropTypes.func.isRequired,
+  getUserData: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  data: state.data
 })
 
 const mapActionsToProps = {
-  uploadImage
+  uploadImage,
+  getUserData
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(profile)

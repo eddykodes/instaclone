@@ -25,7 +25,7 @@ export class notifications extends Component {
           const time = dayjs(not.createdAt).fromNow()
 
           return (
-            <LinkContainer to={`/${not.recipient}/post/${not.postId}`} className='mb-2'>
+            <LinkContainer to={`/${not.recipient}/posts/${not.postId}`} className='mb-2'>
               <div className='ProfileCard d-flex align-items-center px-3 pt-2'>
                 <Image src={not.senderImage} roundedCircle className='mr-2' />
                 <ul className='list-unstyled m-0'>
