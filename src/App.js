@@ -13,7 +13,6 @@ import { logoutUser, getUserData } from './redux/actions/userActions'
 
 // Pages
 import home from './pages/home'
-import messages from './pages/messages'
 import profile from './pages/profile'
 import users from './pages/users'
 import login from './pages/login'
@@ -51,7 +50,6 @@ function App() {
           <MainNavbar />
           <Switch>
             <PrivateRoute exact path='/' component={home} />
-            <PrivateRoute exact path='/messages' component={messages} />
             <PrivateRoute exact path='/notifications' component={notifications} />
             <Route exact path='/login' component={login} />
             <Route exact path='/signup' component={signup} />

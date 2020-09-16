@@ -37,7 +37,7 @@ export class Post extends Component {
             </div>
             <ul className='list-unstyled mb-0'>
               <li className='mb-2'>{post.body}</li>
-              <li><span>View all {post.commentCount} comments</span></li>
+              <li><a href={`/${post.userName}/posts/${post.postId}`}>View all {post.commentCount} comments</a></li>
               {
                 post.comments.slice(0,4).map(comment => (
                   <li key={comment.createdAt}><span><b>{comment.userName}</b> {comment.body}</span></li>

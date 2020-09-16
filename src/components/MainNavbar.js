@@ -19,7 +19,6 @@ import Image from 'react-bootstrap/Image'
 
 // Icons
 import { 
-  ChatSquare, 
   House,
 } from 'react-bootstrap-icons'
 
@@ -86,7 +85,6 @@ export class MainNavbar extends Component {
               this.props.user.authenticated 
               ? (
                 <Nav className="ml-auto">
-
                   <Nav.Link href='/'><House size={20}/></Nav.Link>
                   <MainNavbarNotifications />
                   <Dropdown alignRight>
