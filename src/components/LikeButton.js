@@ -36,9 +36,11 @@ export class LikeButton extends Component {
   }
   likePost = () => {
     this.props.likePost(this.props.postId)
+    this.setState({ likeStatus: true })
   }
   unlikePost = () => {
     this.props.unlikePost(this.props.postId)
+    this.setState({ likeStatus: false })
   }
   render() {
     return (
@@ -50,6 +52,7 @@ export class LikeButton extends Component {
             <Heart className='mr-3' size={25} onClick={this.likePost} />
           )
         }
+        <span>{this.props.postId}</span>
         
       </Fragment>
     )
