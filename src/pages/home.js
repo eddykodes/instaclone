@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
 
 // Components
 import Post from '../components/Post'
 import PostSkeleton from '../components/PostSkeleton'
 import NewPost from '../components/NewPost'
 import Suggestions from '../components/Suggestions'
+import UserCard from '../components/UserCard'
+import UserCardSkeleton from '../components/UserCardSkeleton'
 
 // Redux
 import { connect } from 'react-redux'
@@ -49,16 +50,10 @@ export class home extends Component {
             </Col>
             <Col className='d-none d-lg-block'>
               {
-                this.props.user.authenticated ? (
-                  <div className='home-profile d-flex align-items-center p-3 mb-3'>
-                    <Image src={this.props.user.credentials.userImage} alt='profile' className='mr-3'/>
-                    <ul className='list-unstyled m-0'>
-                      <li><b>{this.props.user.credentials.userName}</b></li>
-                      <li className='text-grey'>{this.props.user.credentials.name}</li>
-                    </ul>
-                  </div>
+                this.props.user.authenticated && !this.props.user.loading ? (
+                  <UserCard userImage={this.props.user.credentials.userImage} userName={this.props.user.credentials.userName} name={this.props.user.credentials.name} />
                 ) : (
-                  null
+                  <UserCardSkeleton />
                 )
               }
               <Suggestions authenticatedUser={this.props.user.credentials.userName}/>
