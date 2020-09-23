@@ -52,6 +52,11 @@ export class NewPost extends Component {
       [event.target.name]: event.target.value
     })
   }
+  handleFile = (event) => {
+    this.setState({
+      [event.target.name]: event.target.files[0]
+    })
+  }
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.createPost({ 
@@ -60,6 +65,7 @@ export class NewPost extends Component {
       userName: this.props.user.credentials.userName,
       userImage: this.props.user.credentials.userImage
     })
+    this.handleClose()
   }
   render() {
     const { userName, userImage } = this.props.user.credentials
@@ -78,15 +84,11 @@ export class NewPost extends Component {
             <Image src={userImage} alt='profile' className='mr-2'/><span><b>{userName}</b></span><span className='ml-auto'></span>
           </div>
           <Form className='' onSubmit={this.handleSubmit}>
-            <div className='NewPost-Image-Container'>
-              <div className='NewPost-Image d-flex justify-content-center align-items-center'>
-                <Form.Group controlId="formBasicTest">
-                  <Form.Control size='sm' name='image' value={this.state.image} onChange={this.handleChange} type="text" placeholder="Enter image" isInvalid={this.state.errors.image ? (true):(false)} />
-                  <Form.Control.Feedback type='invalid'>{this.state.errors.image}</Form.Control.Feedback> 
+            <div className='Post-Image-Container'>
+              <div className='Post-Image d-flex justify-content-center align-items-center'>
+                <Form.Group className='Create-Post-Image'>
+                  <Form.File id="image" name='image' onChange={this.handleFile}/>
                 </Form.Group>
-                {/* <Form.Group className='Create-Post-Image'>
-                  <Form.File id="exampleFormControlFile1"/>
-                </Form.Group> */}
               </div>
             </div>
             <Form.Group controlId="formTextArea" className='NewPost-Body p-3'>

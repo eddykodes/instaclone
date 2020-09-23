@@ -43,7 +43,14 @@ export const getPost = (postId) => (dispatch) => {
 // Create a new post
 export const createPost = (newPost) => (dispatch) => {
   dispatch({ type: LOADING_UI })
-  axios.post('/posts', newPost)
+
+  let formData = new FormData();
+  formData.append('image', newPost.image, newPost.image.name)
+  formData.append('body', newPost.body)
+  formData.append('userName', newPost.userName)
+  formData.append('userImage', newPost.userImage)
+
+  axios.post('/posts', formData)
     .then(res => {
       dispatch({
         type: CREATE_POST,
